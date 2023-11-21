@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\damian.boz\\.nuget\\packages\\": {},
+    "C:\\Users\\d-boz\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Damian\\Flowers_B2C\\Flowers.Services\\Flowers.Services.csproj",
+      "projectUniqueName": "C:\\Projects\\Flowers_B2C\\Flowers.Services\\Flowers.Services.csproj",
       "projectName": "Flowers.Services",
-      "projectPath": "C:\\Damian\\Flowers_B2C\\Flowers.Services\\Flowers.Services.csproj",
-      "packagesPath": "C:\\Users\\damian.boz\\.nuget\\packages\\",
-      "outputPath": "C:\\Damian\\Flowers_B2C\\Flowers.Services\\obj\\",
+      "projectPath": "C:\\Projects\\Flowers_B2C\\Flowers.Services\\Flowers.Services.csproj",
+      "packagesPath": "C:\\Users\\d-boz\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\Flowers_B2C\\Flowers.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\damian.boz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\d-boz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -66,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

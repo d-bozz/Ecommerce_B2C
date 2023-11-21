@@ -1,4 +1,8 @@
 is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
 build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -9,41 +13,43 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Flowers.WebAssembly
 build_property.RootNamespace = Flowers.WebAssembly
-build_property.ProjectDir = C:\Damian\Flowers_B2C\Flowers.WebAssembly\
+build_property.ProjectDir = C:\Projects\Flowers_B2C\Flowers.WebAssembly\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Damian\Flowers_B2C\Flowers.WebAssembly
+build_property.MSBuildProjectDirectory = C:\Projects\Flowers_B2C\Flowers.WebAssembly
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/App.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Counter.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/FetchData.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Index.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/SurveyPrompt.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/_Imports.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/MainLayout.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-b4d3d6yxq4
 
-[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/NavMenu.razor]
+[C:/Projects/Flowers_B2C/Flowers.WebAssembly/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kcdkluc46o

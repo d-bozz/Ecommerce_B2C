@@ -3,7 +3,55 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.WebAssembly", "Flowers.WebAssembly\Flowers.WebAssembly.csproj", "{1D587AE5-2479-4514-BE74-0462B8884E4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.Utilities", "Flowers.Utilidades\Flowers.Utilities.csproj", "{D2CE84A0-85AE-42CC-BB6D-18B1EAAAD230}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.Services", "Flowers.Services\Flowers.Services.csproj", "{7B423512-2C76-4533-8D1D-ED402A226A2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.Repository", "Flowers.Repository\Flowers.Repository.csproj", "{47CD1419-AAE0-4232-A729-9D60FB4C10AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.Models", "Flowers.Models\Flowers.Models.csproj", "{45DD5423-3A73-4587-BAE2-BAE08FFE6957}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.DTO", "Flowers.DTO\Flowers.DTO.csproj", "{78056BEB-07AC-47CA-9AB2-1CD07B72A4C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.API", "Flowers.API\Flowers.API.csproj", "{6EBCFDA2-7422-43FD-83F5-7F22AA6C8A55}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D587AE5-2479-4514-BE74-0462B8884E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D587AE5-2479-4514-BE74-0462B8884E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D587AE5-2479-4514-BE74-0462B8884E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D587AE5-2479-4514-BE74-0462B8884E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2CE84A0-85AE-42CC-BB6D-18B1EAAAD230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2CE84A0-85AE-42CC-BB6D-18B1EAAAD230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2CE84A0-85AE-42CC-BB6D-18B1EAAAD230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2CE84A0-85AE-42CC-BB6D-18B1EAAAD230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B423512-2C76-4533-8D1D-ED402A226A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B423512-2C76-4533-8D1D-ED402A226A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B423512-2C76-4533-8D1D-ED402A226A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B423512-2C76-4533-8D1D-ED402A226A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CD1419-AAE0-4232-A729-9D60FB4C10AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CD1419-AAE0-4232-A729-9D60FB4C10AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CD1419-AAE0-4232-A729-9D60FB4C10AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CD1419-AAE0-4232-A729-9D60FB4C10AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45DD5423-3A73-4587-BAE2-BAE08FFE6957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45DD5423-3A73-4587-BAE2-BAE08FFE6957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45DD5423-3A73-4587-BAE2-BAE08FFE6957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45DD5423-3A73-4587-BAE2-BAE08FFE6957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78056BEB-07AC-47CA-9AB2-1CD07B72A4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78056BEB-07AC-47CA-9AB2-1CD07B72A4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78056BEB-07AC-47CA-9AB2-1CD07B72A4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78056BEB-07AC-47CA-9AB2-1CD07B72A4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBCFDA2-7422-43FD-83F5-7F22AA6C8A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBCFDA2-7422-43FD-83F5-7F22AA6C8A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBCFDA2-7422-43FD-83F5-7F22AA6C8A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBCFDA2-7422-43FD-83F5-7F22AA6C8A55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

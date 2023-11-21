@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MOfgTitJtpja/dmfxCiDgcaYhoRTzfS96+nz0/qmOCDAc494yKZfMyhzdyOG2rhp5mCetgLri1k+XuLGajS/MA==",
+  "dgSpecHash": "BqSl+4AAVn8dF9XjQ7RJgU1R/5WdnBZVrBiiR/jwQtQb19uspPp7eedXlgYIT6ngEF10ADvTQ52Lt8WwWAhWgA==",
   "success": true,
-  "projectFilePath": "C:\\Damian\\Flowers_B2C\\Flowers.Repository\\Flowers.Repository.csproj",
+  "projectFilePath": "C:\\Projects\\Flowers_B2C\\Flowers.Repository\\Flowers.Repository.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
