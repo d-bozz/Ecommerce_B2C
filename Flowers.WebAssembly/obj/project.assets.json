@@ -494,6 +494,16 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "Flowers.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Flowers.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Flowers.DTO.dll": {}
+        }
       }
     },
     "net7.0/browser-wasm": {
@@ -982,6 +992,16 @@
         },
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
+        }
+      },
+      "Flowers.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Flowers.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Flowers.DTO.dll": {}
         }
       }
     }
@@ -1945,10 +1965,16 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Flowers.DTO/1.0.0": {
+      "type": "project",
+      "path": "../Flowers.DTO/Flowers.DTO.csproj",
+      "msbuildProject": "../Flowers.DTO/Flowers.DTO.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Flowers.DTO >= 1.0.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.4",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.4",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
@@ -1988,7 +2014,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projects\\Flowers_B2C\\Flowers.DTO\\Flowers.DTO.csproj": {
+              "projectPath": "C:\\Projects\\Flowers_B2C\\Flowers.DTO\\Flowers.DTO.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

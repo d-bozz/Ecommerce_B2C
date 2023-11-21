@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Flowers.Utilities/1.0.0": {
+        "runtime": {
+          "Flowers.Utilities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Flowers.Utilities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

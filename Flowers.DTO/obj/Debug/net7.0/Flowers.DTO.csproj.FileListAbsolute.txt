@@ -1,0 +1,12 @@
+C:\Projects\Flowers_B2C\Flowers.DTO\bin\Debug\net7.0\Flowers.DTO.deps.json
+C:\Projects\Flowers_B2C\Flowers.DTO\bin\Debug\net7.0\Flowers.DTO.dll
+C:\Projects\Flowers_B2C\Flowers.DTO\bin\Debug\net7.0\Flowers.DTO.pdb
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.AssemblyInfoInputs.cache
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.AssemblyInfo.cs
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.csproj.CoreCompileInputs.cache
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.sourcelink.json
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.dll
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\refint\Flowers.DTO.dll
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\Flowers.DTO.pdb
+C:\Projects\Flowers_B2C\Flowers.DTO\obj\Debug\net7.0\ref\Flowers.DTO.dll

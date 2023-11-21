@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Flowers.DTO\Flowers.DTO.csproj" />
+    <ProjectReference Include="..\Flowers.Models\Flowers.Models.csproj" />
+  </ItemGroup>
+
 </Project>

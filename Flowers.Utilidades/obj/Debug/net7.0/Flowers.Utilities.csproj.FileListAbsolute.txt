@@ -1,0 +1,12 @@
+C:\Projects\Flowers_B2C\Flowers.Utilidades\bin\Debug\net7.0\Flowers.Utilities.deps.json
+C:\Projects\Flowers_B2C\Flowers.Utilidades\bin\Debug\net7.0\Flowers.Utilities.dll
+C:\Projects\Flowers_B2C\Flowers.Utilidades\bin\Debug\net7.0\Flowers.Utilities.pdb
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.AssemblyInfoInputs.cache
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.AssemblyInfo.cs
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.csproj.CoreCompileInputs.cache
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.sourcelink.json
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.dll
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\refint\Flowers.Utilities.dll
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\Flowers.Utilities.pdb
+C:\Projects\Flowers_B2C\Flowers.Utilidades\obj\Debug\net7.0\ref\Flowers.Utilities.dll
