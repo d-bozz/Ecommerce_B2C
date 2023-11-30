@@ -5,31 +5,17 @@ namespace Flowers.Models;
 
 public partial class Usuario
 {
-    public int UsuarioId { get; set; }
+    public int IdUsuario { get; set; }
 
-    public string UsuarioNombre { get; set; } = null!;
+    public string? NombreCompleto { get; set; }
 
-    public string UsuarioApellido { get; set; } = null!;
+    public string? Correo { get; set; }
 
-    public string UsuarioEmail { get; set; } = null!;
+    public string? Clave { get; set; }
 
-    public string UsuarioPassword { get; set; } = null!;
+    public string? Rol { get; set; }
 
-    public string UsuarioDireccion { get; set; } = null!;
+    public DateTime? FechaCreacion { get; set; }
 
-    public string UsuarioTelefono { get; set; } = null!;
-
-    public string UsuarioRol { get; set; } = null!;
-
-    public DateTime? UsuarioCreatedAt { get; set; }
-
-    public virtual ICollection<Carrito> Carritos { get; set; } = new List<Carrito>();
-
-    public virtual ICollection<Envio> Envios { get; set; } = new List<Envio>();
-
-    public virtual ICollection<ListaDeseo> ListaDeseos { get; set; } = new List<ListaDeseo>();
-
-    public virtual ICollection<Orden> Ordens { get; set; } = new List<Orden>();
-
-    public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

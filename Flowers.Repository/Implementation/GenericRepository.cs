@@ -12,12 +12,20 @@ namespace Flowers.Repository.Implementation
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        #region Properties and Fields
+        
         private readonly FlowersB2cContext _dbContext;
+
+        #endregion
+
+        #region Constructor
 
         public GenericRepository(FlowersB2cContext dbContext)
         {
             _dbContext = dbContext;
         }
+        
+        #endregion
 
         public async Task<T> Create(T model)
         {

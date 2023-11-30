@@ -5,11 +5,11 @@ namespace Flowers.Models;
 
 public partial class Categoria
 {
-    public int CategoriaId { get; set; }
+    public int IdCategoria { get; set; }
 
-    public string CategoriaNombre { get; set; } = null!;
+    public string? Nombre { get; set; }
 
-    public DateTime? CategoriaCreatedAt { get; set; }
+    public DateTime? FechaCreacion { get; set; }
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

@@ -5,29 +5,25 @@ namespace Flowers.Models;
 
 public partial class Producto
 {
-    public int ProductoId { get; set; }
+    public int IdProducto { get; set; }
 
-    public string ProductoCodigo { get; set; } = null!;
+    public string? Nombre { get; set; }
 
-    public string ProductoNombre { get; set; } = null!;
+    public string? Descripcion { get; set; }
 
-    public string ProductoDescripcion { get; set; } = null!;
+    public int? IdCategoria { get; set; }
 
-    public decimal ProductoPrecio { get; set; }
+    public decimal? Precio { get; set; }
 
-    public int ProductoStock { get; set; }
+    public decimal? PrecioOferta { get; set; }
 
-    public int CategoriaId { get; set; }
+    public int? Cantidad { get; set; }
 
-    public DateTime? ProductoCreatedAt { get; set; }
+    public string? Imagen { get; set; }
 
-    public virtual ICollection<Carrito> Carritos { get; set; } = new List<Carrito>();
+    public DateTime? FechaCreacion { get; set; }
 
-    public virtual Categoria Categoria { get; set; } = null!;
+    public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
 
-    public virtual ICollection<Foto> Fotos { get; set; } = new List<Foto>();
-
-    public virtual ICollection<ListaDeseo> ListaDeseos { get; set; } = new List<ListaDeseo>();
-
-    public virtual ICollection<OrdenItem> OrdenItems { get; set; } = new List<OrdenItem>();
+    public virtual Categoria? IdCategoriaNavigation { get; set; }
 }
