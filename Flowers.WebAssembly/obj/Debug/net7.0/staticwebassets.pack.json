@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\Flowers.WebAssembly.styles.css"
     },
     {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\black2.jpg",
+      "PackagePath": "staticwebassets\\assets\\black2.jpg"
+    },
+    {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\facebook-logo.svg",
+      "PackagePath": "staticwebassets\\assets\\facebook-logo.svg"
+    },
+    {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\google-logo.svg",
+      "PackagePath": "staticwebassets\\assets\\google-logo.svg"
+    },
+    {
       "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
