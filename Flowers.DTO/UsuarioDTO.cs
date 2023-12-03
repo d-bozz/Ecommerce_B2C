@@ -24,6 +24,10 @@ namespace Flowers.DTO
         [Required(ErrorMessage = "Ingrese confirmar contraseña")]
         public string? ConfirmarClave { get; set; }
 
+        public bool MostrarClave { get; set; }
+
+        public bool MostrarConfirmacionClave { get; set; }
+
         public string? Rol { get; set; }
     }
 }

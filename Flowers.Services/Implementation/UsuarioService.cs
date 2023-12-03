@@ -47,12 +47,11 @@ namespace Flowers.Services.Implementation
                 }
                 else 
                 { 
-                    throw new TaskCanceledException("No se encontraron coincidencias");
+                    throw new TaskCanceledException("El Usuario o la Clave es incorrecto");
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

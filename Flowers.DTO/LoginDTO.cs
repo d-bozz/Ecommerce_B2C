@@ -14,5 +14,7 @@ namespace Flowers.DTO
 
         [Required(ErrorMessage = "Ingrese contraseña")]
         public string? Clave { get; set; }
+
+        public bool MostrarClave { get; set; }
     }
 }

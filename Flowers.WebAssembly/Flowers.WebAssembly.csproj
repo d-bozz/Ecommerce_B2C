@@ -19,4 +19,9 @@
     <ProjectReference Include="..\Flowers.DTO\Flowers.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>
