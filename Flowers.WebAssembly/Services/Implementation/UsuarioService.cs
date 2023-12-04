@@ -60,6 +60,13 @@ namespace Flowers.WebAssembly.Services.Implementation
             return await _httpClient.GetFromJsonAsync<ResponseDTO<List<UsuarioDTO>>>($"Usuario/List/{rol}/{buscar}");
         }
 
+        public async Task<ResponseDTO<UsuarioDTO>> SendEmail(UsuarioDTO model)
+        {
+            var response = await _httpClient.PostAsJsonAsync("Usuario/SendEmail", model);
+            var result = await response.Content.ReadFromJsonAsync<ResponseDTO<UsuarioDTO>>();
+            return result;
+        }
+
         #endregion
     }
 }
