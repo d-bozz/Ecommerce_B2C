@@ -1,0 +1,80 @@
+﻿@page "/registrarse"
+@layout LoginLayout
+@inject IUsuarioService _usuarioService
+@inject NavigationManager _navServicio
+@inject IToastService toastService
+
+<section class="container">
+    <div class="form">
+        <div class="form-content">
+            <header>Registro</header>
+            <EditForm Model="modelo" OnValidSubmit="SaveChanges">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                
+                <div class="field input-field">
+                    <input class="form-control" id="inputEmail" type="text" placeholder="Nombre completo" @bind-value="modelo.NombreCompleto" autocomplete="off" />
+                    <ValidationMessage For="@(()=>modelo.NombreCompleto)" />
+                </div>
+
+                <div class="field input-field">
+                    <input class="form-control" id="inputEmail" type="email" placeholder="Email" @bind-value="modelo.Correo" autocomplete="off" />
+                    <ValidationMessage For="@(()=>modelo.Correo)" />
+                </div>
+
+                <div class="field input-field">
+                    <input class="form-control" id="inputPassword" type="@((modelo.MostrarClave) ? "text" : "password")" placeholder="Clave" @bind-value="modelo.Clave" autocomplete="off" />
+                    <i class="@((modelo.MostrarClave) ? "bx bx-show eye-icon" : "bx bx-hide eye-icon")" @onclick="TogglePasswordVisibility"></i>
+                    <ValidationMessage For="@(()=>modelo.Clave)" />
+                </div>
+
+                 <div class="field input-field">
+                    <input class="form-control" id="inputPasswordConfirm" type="@((modelo.MostrarConfirmacionClave) ? "text" : "password")" placeholder="Confirmación de clave" @bind-value="modelo.ConfirmarClave" autocomplete="off" />
+                    <i class="@((modelo.MostrarConfirmacionClave) ? "bx bx-show eye-icon" : "bx bx-hide eye-icon")" @onclick="ToggleConfirmPasswordVisibility"></i>
+                    <ValidationMessage For="@(()=>modelo.ConfirmarClave)" />
+                 </div>
+
+                <div class="field button-field">
+                    <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Registrarse</button></div>
+                </div>
+            </EditForm>
+            <div class="form-link">
+                <span>¿Ya tienes una cuenta? <a href="/login" class="link signup-link">Ir al Login</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private UsuarioDTO modelo = new UsuarioDTO();
+
+    private async Task SaveChanges()
+    {
+        if (modelo.Clave != modelo.ConfirmarClave)
+        {
+            toastService.ShowWarning("Las contraseñas no coinciden");
+            return;
+        }
+
+        modelo.Rol = "Cliente";
+        var response = await _usuarioService.Create(modelo);
+        if (response.IsCorrect)
+        {
+            toastService.ShowSuccess("Su cuenta ha sido creada");
+            _navServicio.NavigateTo("/login");
+        }
+        else
+        {
+            toastService.ShowError("No se pudo crear su cuente, intente más tarde");
+        }
+    }
+
+    private void TogglePasswordVisibility()
+    {
+        modelo.MostrarClave = !modelo.MostrarClave;
+    }
+
+    private void ToggleConfirmPasswordVisibility()
+    {
+        modelo.MostrarConfirmacionClave = !modelo.MostrarConfirmacionClave;
+    }
+}

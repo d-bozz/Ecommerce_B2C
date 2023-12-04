@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Flowers.DTO\Flowers.DTO.csproj" />
+    <ProjectReference Include="..\Flowers.Models\Flowers.Models.csproj" />
+    <ProjectReference Include="..\Flowers.Repository\Flowers.Repository.csproj" />
+    <ProjectReference Include="..\Flowers.Utilidades\Flowers.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

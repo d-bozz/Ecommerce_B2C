@@ -1,0 +1,89 @@
+﻿@page "/login"
+@using Flowers.WebAssembly.Extensions;
+@using Microsoft.AspNetCore.Components.Authorization;
+@layout LoginLayout
+@inject IUsuarioService _usuarioService
+@inject NavigationManager _navServicio
+@inject IToastService toastService
+@inject AuthenticationStateProvider autenticacionProvider
+
+
+<section class="container">
+    <div class="form">
+        <div class="form-content">
+            <header>Login</header>
+             <EditForm Model="modelo" OnValidSubmit="Start">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="field input-field">
+                    <input class="form-control" id="inputEmail" type="email" placeholder="Email" @bind-value="modelo.Correo" autocomplete="off" />
+                    <ValidationMessage For="@(()=>modelo.Correo)" />
+                </div>
+
+                <div class="field input-field">
+                    <input class="form-control" id="inputPassword" type="@((modelo.MostrarClave) ? "text" : "password")" placeholder="Clave" @bind-value="modelo.Clave" autocomplete="off" />
+                    <i class="@((modelo.MostrarClave) ? "bx bx-show eye-icon" : "bx bx-hide eye-icon")" @onclick="TogglePasswordVisibility"></i>
+                    <ValidationMessage For="@(()=>modelo.Clave)" />
+                </div>
+
+                <div class="form-link">
+                    <a href="/passwordrecovery" class="forgot-pass">¿Olvidaste la clave?</a>
+                </div>
+
+                <div class="field button-field">
+                    <button>Ingresar</button>
+                </div>
+            </EditForm>
+            <div class="form-link">
+                <span>¿No tienes una cuenta? <a href="/registrarse" class="link signup-link">Registrarse</a></span>
+            </div>
+        </div>
+        
+        <div class="line"></div>
+
+        <div class="media-options">
+            <a href="#" class="field facebook">
+                <img src="/assets/facebook-logo.svg" alt="Facebook" class="facebook-img" />
+                <span>Ingresar con Facebook</span>
+            </a>
+        </div>
+
+        <div class="media-options">
+            <a href="#" class="field google">
+                <img src="/assets/google-logo.svg" alt="Google" class="google-img" />
+                <span>Ingresar con Google</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+@code {
+    private LoginDTO modelo = new LoginDTO();
+
+    private async Task Start()
+    {
+        var response = await _usuarioService.Autorization(modelo);
+
+        if (response.IsCorrect)
+        {
+            SesionDTO sesion = (SesionDTO)response.Result!;
+
+            var autenticacionExt = (AuthenticationExtension)autenticacionProvider;
+            await autenticacionExt.UpdateAuthenticationState(sesion);
+
+            if (sesion.Rol.ToLower() == "cliente")
+                _navServicio.NavigateTo("/catalogo");
+            else
+                _navServicio.NavigateTo("/dashboard");
+        }
+        else
+        {
+            toastService.ShowWarning(response.Message!);
+        }
+    }
+
+    private void TogglePasswordVisibility()
+    {
+        modelo.MostrarClave = !modelo.MostrarClave;
+    }
+}
