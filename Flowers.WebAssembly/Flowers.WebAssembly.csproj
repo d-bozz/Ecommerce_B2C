@@ -24,4 +24,9 @@
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\autorization\PasswordRecovery.css" />
+    <None Include="wwwroot\css\autorization\Register.css" />
+  </ItemGroup>
+
 </Project>

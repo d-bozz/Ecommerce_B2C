@@ -30,6 +30,6 @@ namespace Flowers.DTO
 
         public string? Rol { get; set; }
 
-        public string Token { get; set; }
+        public string? Token { get; set; }
     }
 }
