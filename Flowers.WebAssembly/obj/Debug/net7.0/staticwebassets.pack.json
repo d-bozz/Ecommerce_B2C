@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\autorization\\Login.css",
+      "PackagePath": "staticwebassets\\css\\autorization\\Login.css"
+    },
+    {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\autorization\\PasswordRecovery.css",
+      "PackagePath": "staticwebassets\\css\\autorization\\PasswordRecovery.css"
+    },
+    {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\autorization\\Register.css",
+      "PackagePath": "staticwebassets\\css\\autorization\\Register.css"
+    },
+    {
       "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
@@ -71,6 +83,10 @@
     {
       "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\css\\shared\\Footer.css",
+      "PackagePath": "staticwebassets\\css\\shared\\Footer.css"
     },
     {
       "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\favicon.png",

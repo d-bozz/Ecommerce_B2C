@@ -1675,7 +1675,3 @@ C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\build-gz\G6WdUukN.gz
 C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\build-gz\Pz1LEmow.gz
 C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\build-gz\VhV3BURw.gz
 C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\build-gz\dzx9q3PN.gz
-C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\scopedcss\Pages\Autorization\Login.razor.rz.scp.css
-C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\scopedcss\projectbundle\Flowers.WebAssembly.bundle.scp.css
-C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\scopedcss\Pages\Autorization\Register.razor.rz.scp.css
-C:\Damian\Flowers_B2C\Flowers.WebAssembly\obj\Debug\net7.0\scopedcss\Pages\Autorization\PasswordRecovery.razor.rz.scp.css
