@@ -20,13 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\" />
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\autorization\PasswordRecovery.css" />
-    <None Include="wwwroot\css\autorization\Register.css" />
+    <None Include="wwwroot\assets\css\autorization\passwordRecovery.css" />
+    <None Include="wwwroot\assets\css\autorization\register.css" />
   </ItemGroup>
 
 </Project>

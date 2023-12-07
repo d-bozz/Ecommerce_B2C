@@ -7,17 +7,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('/assets/black2.jpg');
+    background-image: url('/assets/images/autorization-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     max-width: 100%;
-    position: absolute;
 }
 
 .form {
+    position: absolute;
     max-width: 430px;
     width: 100%;
     padding: 30px;
@@ -107,12 +107,6 @@ form {
 
 .form-content a:hover {
     text-decoration: underline;
-}
-
-.media-options a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 @media screen and (max-width: 400px) {
