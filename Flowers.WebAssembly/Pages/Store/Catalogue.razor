@@ -5,6 +5,17 @@
 @inject ICategoriaService categoriaServicio;
 @inject NavigationManager navManager
 
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>Price Range Slider | CodingNepal</title>
+    <link rel="stylesheet" href="assets/css/pages/filter.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+    <body>
+
 <div class="row justify-content-center mt-3 mb-4">
 
     <div class="col-sm-6 col-md-8 col-xl-9">
@@ -18,9 +29,8 @@
 </div>
 
 <div class="row">
+    <!-- Filtro por categorias -->
     <div class="col-sm-3">
-
-
         <div class="card">
             <div class="card-header text-white bg-dark">
                 Categorias
@@ -55,9 +65,7 @@
                     </div>
                 }
             </div>
-
         </div>
-
     </div>
 
     <div class="col-sm-9">
@@ -84,12 +92,12 @@
                                     <!-- Product price-->
                                     @if (item.PrecioOferta != 0 && item.PrecioOferta < item.Precio)
                                     {
-                                        <span class="text-danger text-decoration-line-through">S/. @item.Precio</span>
-                                        <span>S /.@item.PrecioOferta</span>
+                                        <span class="text-danger text-decoration-line-through">$ @item.Precio</span>
+                                        <span>$@item.PrecioOferta</span>
                                     }
                                     else
                                     {
-                                        <span>S /.@item.Precio</span>
+                                        <span>$@item.Precio</span>
                                     }
                                 </div>
                             </div>
@@ -110,7 +118,8 @@
         </div>
     </div>
 </div>
-
+</body>
+</html>
 
 @code {
     private List<CategoriaDTO>? listaCategoria = null;

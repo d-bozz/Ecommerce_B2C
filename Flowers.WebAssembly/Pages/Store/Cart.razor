@@ -9,35 +9,39 @@
 @using System.Security.Claims;
 
 
-<div class="row mt-4">
+<div class="row">
+    <!-- Productos en el carrito -->
     <div class="col-sm-8">
         <div class="card mb-3">
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-sm bg-light table-bordered">
                         <thead class="table-dark">
-                            <tr>
-                                <th style="width:102px"></th>
+                            <tr class="text-center">
+                                <th>Imagen</th>
                                 <th>Producto</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
                                 <th>Total</th>
-                                <th></th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             @if (lista.Any())
                             {
                                 foreach (var item in lista)
                                 {
-                                    <tr>
+                                    <tr class="text-center">
+                                        <!-- Agregar la clase text-center aquí -->
                                         <td valign="middle">
                                             <img class="card-img-top" src="@item.Producto.Imagen" style="width:100px">
                                         </td>
-                                        <td valign="middle">@item.Producto.Nombre</td>
-                                        <td valign="middle">@item.Precio</td>
+                                        <td valign="middle">
+                                            <a href="detalle/@item.Producto.IdProducto">
+                                                @item.Producto.Nombre
+                                            </a>
+                                        </td>
+                                        <td valign="middle">$@item.Precio</td>
                                         <td valign="middle" align="center">
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" class="btn btn-outline-dark" @onclick="(() =>Disminuir(item.Producto.IdProducto))">
@@ -49,7 +53,7 @@
                                                 </button>
                                             </div>
                                         </td>
-                                        <td valign="middle">@item.Total</td>
+                                        <td valign="middle">$@item.Total</td>
                                         <td valign="middle">
                                             <button type="button" class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.Producto.IdProducto))">
                                                 <i class="oi oi-trash"></i>
@@ -57,10 +61,11 @@
                                         </td>
                                     </tr>
                                 }
-
-
-                            } else {
-                                <tr>
+                            }
+                            else
+                            {
+                                <tr class="text-center">
+                                    <!-- Agregar la clase text-center aquí -->
                                     <td colspan="6">
                                         <div class="alert alert-warning" role="alert">
                                             No hay productos en el carrito
@@ -68,74 +73,67 @@
                                     </td>
                                 </tr>
                             }
-
-
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
+
+    <!-- Información de Pago -->
     <div class="col-sm-4">
         <div class="card mb-3">
             <div class="card-body">
-                <EditForm Model="tarjeta" OnValidSubmit="ProcesarPago">
-                    <DataAnnotationsValidator></DataAnnotationsValidator>
-
-                    <div class="mb-2">
-                        <label class="form-label">Nombre Titular</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="" @bind-value="tarjeta.Titular" disabled="@disabled">
-                        <ValidationMessage For="@(()=>tarjeta.Titular)" />
-
+                <!-- Subtotal -->
+                <div class="d-flex justify-content-between">
+                    <div class="fw-bold">Subtotal:</div>
+                    <div>
+                        @(string.Format("{0:C}", lista.Sum(i => i.Total)))
                     </div>
-                    <div class="mb-2">
-                        <label  class="form-label">Numero Tarjeta</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="##############" autocomplete="off" @bind-value="tarjeta.Numero" disabled="@disabled">
-                        <ValidationMessage For="@(()=>tarjeta.Numero)" />
+                </div>
+                <hr />
+                <!-- Envío -->
+                <div class="d-flex justify-content-between">
+                    <div class="fw-bold">Envío:</div>
+                    <div>@(string.Format("{0:C}", envio))</div>
+                </div>
+                <hr />
+                <!-- Total a pagar -->
+                <div class="d-flex justify-content-between">
+                    <div class="fw-bold">Total a pagar:</div>
+                    <div>
+                        @(string.Format("{0:C}", lista.Sum(i => i.Total) + envio))
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="mb-2">
-                                <label class="form-label">Vigencia</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="MM/YY" autocomplete="off" @bind-value="tarjeta.Vigencia" disabled="@disabled">
-                                <ValidationMessage For="@(()=>tarjeta.Vigencia)" />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mb-2">
-                                <label class="form-label">CVV</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="###" autocomplete="off" @bind-value="tarjeta.CVV" disabled="@disabled">
-                                <ValidationMessage For="@(()=>tarjeta.CVV)" />
-                            </div>
-                        </div>
+                </div>
+                <hr />
+                <!-- Realizar Checkout -->
+                <div class="mt-2">
+                    <div class="d-grid gap-1">
+                        <button class="btn btn-dark btn-lg" href="/checkout" disabled="@disabled">Realizar Checkout</button>
                     </div>
-                    <hr />
-                    <div class="d-flex justify-content-between">
-                        <div>Total a pagar:</div>
-                        <div>S/. @(
-                            lista.Sum(i => i.Total)
-                            )</div>
-                    </div>
-                    <div class="mt-2">
-                        <div class="d-grid gap-1">
-                            <button class="btn btn-outline-secondary float-end" type="submit" disabled="@disabled">Procesar pago</button>
-                        </div>
-                    </div>
-                </EditForm>
+                </div>
+                <!-- Mensaje de inicio de sesión -->
                 <AuthorizeView>
                     <NotAuthorized>
                         <div class="alert alert-danger mt-2" role="alert">
-                            Debe iniciar sesion para poder realizar la compra
+                            Debe iniciar sesión para poder realizar la compra.
                         </div>
                     </NotAuthorized>
                 </AuthorizeView>
-
-
             </div>
+        </div>
+    </div>
+
+    <!-- Cupon de descuento -->
+        <div class="col-sm-5">
+        <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Cupón de descuento</h5>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Cupón de descuento" aria-label="Cupón de descuento" aria-describedby="button-addon2">
+                    <button class="btn btn-dark btn-lg" type="button" id="button-addon2">Aplicar</button>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -146,6 +144,7 @@
     private List<CarritoDTO> lista = new List<CarritoDTO>();
     private decimal? TotalPagar = 0;
     private TarjetaDTO tarjeta = new TarjetaDTO();
+    private int envio = 150;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
@@ -195,6 +194,7 @@
             await carritoServicio.RemoveCarrito(idProducto);
         }
     }
+    
     private async Task ProcesarPago()
     {
 

@@ -1,5 +1,7 @@
 ﻿@page "/contacto"
 
+@inject NavigationManager NavigationManager
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,41 +27,30 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <form id="contactForm" action="https://formsubmit.co/r.damian.boz@gmail.com" method="POST">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Ingrese su nombre..." required />
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Ingrese su nombre..." required />
                                         <label for="name">Nombre completo</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese su nombre</div>
                                     </div>
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                    <input class="form-control" id="email" type="email" placeholder="name@example.com" required />
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="name@example.com" required />
                                         <label for="email">Email</label>
                                     </div>
                                     <!-- Phone number input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="phone" type="tel" placeholder="09X XXX XXX" required />
+                                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="09X XXX XXX" required />
                                         <label for="phone">Número de teléfono</label>
                                     </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="message" type="text" placeholder="Ingrese su mensaje..." style="height: 10rem" required></textarea>
+                                    <textarea class="form-control" id="message" name="message" type="text" placeholder="Ingrese su mensaje..." style="height: 10rem" required></textarea>
                                         <label for="message">Mensaje</label>
                                     </div>
-                                   
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">Se envio el mensaje correctamente</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
-                                   
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Ocurrio un error al enviar el mensaje</div></div>
+                                <input type="hidden" name="_next" value="@(baseUrl)gracias">
+                                    <input type="hidden" name="_subject" value="Formulario de contacto Reynante Floreria">
+                                    <input type="hidden" name="_captcha" value="false">
                                     <!-- Submit Button-->
                                 <div class="d-grid"><button class="btn btn-dark btn-lg" id="submitButton" type="submit">Enviar</button></div>
                                 </form>
@@ -95,3 +86,12 @@
     </body>
 </html>
 
+@code{
+    private string baseUrl = "";
+
+    protected override void OnInitialized()
+    {
+        baseUrl = NavigationManager.BaseUri;
+        base.OnInitialized();
+    }
+}

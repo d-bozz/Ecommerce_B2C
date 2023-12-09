@@ -60,3 +60,18 @@ i {
 .footer__list--bottom {
 	flex-direction: row;
 }
+
+.footer__top div:nth-child(1) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right:25%
+}
+
+	.footer__top div:nth-child(1) img {
+		transition: filter 0.3s ease-in-out;
+	}
+
+		.footer__top div:nth-child(1) img:hover {
+			filter: brightness(80%);
+		}
