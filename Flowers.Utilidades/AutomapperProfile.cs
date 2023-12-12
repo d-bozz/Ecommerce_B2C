@@ -52,6 +52,13 @@ namespace Flowers.Utilities
             CreateMap<VentaDTO, Venta>();
 
             #endregion
+
+            #region Wishlist
+
+            CreateMap<Wishlist, WishlistDTO>();
+            CreateMap<WishlistDTO, Wishlist>();
+
+            #endregion
         }
     }
 }

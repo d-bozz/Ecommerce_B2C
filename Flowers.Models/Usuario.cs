@@ -20,4 +20,6 @@ public partial class Usuario
     public string? Token { get; set; }
 
     public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
+
+    public virtual ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
 }

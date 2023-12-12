@@ -26,4 +26,6 @@ public partial class Producto
     public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
 
     public virtual Categoria? IdCategoriaNavigation { get; set; }
+
+    public virtual ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
 }

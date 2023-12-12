@@ -26,6 +26,8 @@ public partial class FlowersB2cContext : DbContext
 
     public virtual DbSet<Venta> Ventas { get; set; }
 
+    public virtual DbSet<Wishlist> Wishlists { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categoria>(entity =>
@@ -150,6 +152,29 @@ public partial class FlowersB2cContext : DbContext
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK__Ventas__id_usuar__412EB0B6");
+        });
+
+        modelBuilder.Entity<Wishlist>(entity =>
+        {
+            entity.HasKey(e => e.IdWishlist).HasName("PK__Wishlist__C3C6AAA530620A2D");
+
+            entity.ToTable("Wishlist");
+
+            entity.Property(e => e.IdWishlist).HasColumnName("id_wishlist");
+            entity.Property(e => e.FechaCreacion)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_creacion");
+            entity.Property(e => e.IdProducto).HasColumnName("id_producto");
+            entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
+
+            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.Wishlists)
+                .HasForeignKey(d => d.IdProducto)
+                .HasConstraintName("FK__Wishlist__id_pro__4D94879B");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Wishlists)
+                .HasForeignKey(d => d.IdUsuario)
+                .HasConstraintName("FK__Wishlist__id_usu__4CA06362");
         });
 
         OnModelCreatingPartial(modelBuilder);
