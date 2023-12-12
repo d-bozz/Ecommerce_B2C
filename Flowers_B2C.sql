@@ -49,6 +49,7 @@ nombre_completo varchar(50),
 correo varchar(255),
 clave varchar(255),
 rol varchar(255),
+token varchar(255),
 fecha_creacion datetime default getdate()
 )
 GO
@@ -73,6 +74,16 @@ id_producto int references Productos(id_producto),
 cantidad int,
 total decimal(10,2)
 )
+GO
+
+/**********************************                Wishlist                   *************************************************/
+
+CREATE TABLE Wishlist (
+    id_wishlist INT PRIMARY KEY IDENTITY,
+    id_usuario INT REFERENCES Usuarios(id_usuario),
+    id_producto INT REFERENCES Productos(id_producto),
+    fecha_creacion DATETIME DEFAULT GETDATE()
+);
 GO
 
 
