@@ -1,7 +1,13 @@
 ﻿@page "/detalle/{id:int}"
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Security.Claims;
 
 @inject IProductoService productoServicio;
-@inject ICarritoService carritoServicio
+@inject ICarritoService carritoServicio;
+@inject IWishlistService wishlistServicio;
+@inject AuthenticationStateProvider authenticationStateProvider;
+@inject IToastService toastService
+@inject NavigationManager _navServicio
 
 <div class="container px-4 px-lg-5 my-5">
 
@@ -31,6 +37,10 @@
                     <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button" @onclick="(async() => await AgregarCarrito(modelo))">
                         <i class="bi-cart-fill me-1"></i>
                         Agregar al carrito
+                    </button>
+                    <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button" @onclick="(async() => await AgregarWishlist(modelo))">
+                        <i class="bi-cart-fill me-1"></i>
+                        Agregar a la lista de deseos
                     </button>
                     <a class="btn btn-outline-dark flex-shrink-0" href="/catalogo">
                         <i class="bi-cart-fill me-1"></i>
@@ -75,5 +85,39 @@
             };
         await carritoServicio.AddCarrito(carrito);
     }
+    
+    private async Task AgregarWishlist(ProductoDTO modelo)
+    {
+        var autenticacionState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var usuarioLogueado = autenticacionState.User;
 
+        if (usuarioLogueado.Identity?.IsAuthenticated ?? false)
+        {
+            var idUsuario = usuarioLogueado.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (int.TryParse(idUsuario, out int idUsuarioInt))
+            {
+                WishlistDTO wishlist = new WishlistDTO()
+                    {
+                        IdUsuario = idUsuarioInt,
+                        IdProducto = modelo.IdProducto,
+                        FechaCreacion = DateTime.Now
+                    };
+
+                await wishlistServicio.Add(wishlist);
+                toastService.ShowSuccess("Producto agregado a la lista de deseos");
+            }
+            else
+            {
+                // Manejo de error si no se pudo obtener el ID del usuario
+                toastService.ShowError("No se pudo obtener el ID del usuario");
+            }
+        }
+        else
+        {
+            // Manejo de error si el usuario no está autenticado
+            toastService.ShowError("El usuario no se encuentra autenticado");
+            _navServicio.NavigateTo("/login");
+        }
+    }
 }

@@ -10,9 +10,11 @@ namespace Flowers.DTO
     {
         public int IdWishlist { get; set; }
 
-        public int? IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
 
-        public int? IdProducto { get; set; }
+        public int IdProducto { get; set; }
+
+        public ProductoDTO? Producto { get; set; }
 
         public DateTime? FechaCreacion { get; set; }
     }

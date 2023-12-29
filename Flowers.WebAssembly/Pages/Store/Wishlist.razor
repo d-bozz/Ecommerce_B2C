@@ -1,0 +1,151 @@
+﻿@page "/wishlist"
+
+@inject ICarritoService carritoServicio
+@inject IWishlistService wishlistServicio
+@inject IProductoService productoServicio
+@inject IVentaService ventaServicio
+@inject IToastService toastService
+@inject NavigationManager _navServicio
+@inject AuthenticationStateProvider authenticationStateProvider;
+
+
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Security.Claims;
+
+
+<div class="row">
+    <!-- Productos en la whishlist -->
+    <div class="col-sm-8">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm bg-light table-bordered">
+                        <thead class="table-dark">
+                            <tr class="text-center">
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Agregar al Carrito</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (lista.Any())
+                            {
+                                foreach (var item in lista)
+                                {
+                                    if (item != null && item.Producto != null)
+                                    { 
+                                    <tr class="text-center">
+                                        <!-- Agregar la clase text-center aquí -->
+                                        <td valign="middle">
+                                                <img class="card-img-top" src="@item.Producto.Imagen" style="width:100px">
+                                        </td>
+                                        <td valign="middle">
+                                            <a href="detalle/@item.IdProducto">
+                                                    @item.Producto.Nombre
+                                            </a>
+                                        </td>
+                                            <td valign="middle">$@item.Producto.Precio</td>
+                                        <td valign="middle">En Stock</td>
+                                        <td valign="middle">
+                                            <button type="button" class="btn btn-outline-dark" @onclick="(async () => await AgregarCarrito(item.IdProducto))">
+                                                <i class="bi bi-cart-plus"></i>
+                                                Agregar al carrito
+                                            </button>
+                                        </td>
+                                        <td valign="middle">
+                                            <button type="button" class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.IdProducto))">
+                                                <i class="oi oi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <tr class="text-center">
+                                    <!-- Agregar la clase text-center aquí -->
+                                    <td colspan="6">
+                                        <div class="alert alert-warning" role="alert">
+                                            No hay productos en la lista de deseos
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private List<WishlistDTO> lista = new List<WishlistDTO>();
+    private ProductoDTO producto;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetWishlist(int idUsuario)
+    {
+        var response = await wishlistServicio.List(idUsuario);
+
+        if (response.IsCorrect)
+        {
+            lista = (List<WishlistDTO>)response.Result!;
+        }
+        else
+        {
+            lista = new List<WishlistDTO>();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var autenticacionState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var usuarioLogueado = autenticacionState.User;
+
+        if (usuarioLogueado.Identity?.IsAuthenticated ?? false)
+        {
+            var idUsuario = usuarioLogueado.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (int.TryParse(idUsuario, out int idUsuarioInt))
+            {
+                await GetWishlist(idUsuarioInt);
+            }
+        }
+    }
+
+    private async Task Eliminar(int idProducto)
+    {
+        WishlistDTO producto = lista.First(i => i.IdProducto == idProducto);
+
+        if (producto != null)
+        {
+            lista.Remove(producto);
+            await wishlistServicio.Delete(producto.IdWishlist);
+            toastService.ShowSuccess("Producto eliminado de la lista de deseos");
+        }
+    }
+
+    private async Task AgregarCarrito(int idProducto)
+    {
+        var modelo = await productoServicio.Get(idProducto);
+        decimal? precioFinal = (modelo.Result.PrecioOferta != 0 && modelo.Result.PrecioOferta < modelo.Result.Precio) ? modelo.Result.PrecioOferta : modelo.Result.Precio;
+        CarritoDTO carrito = new CarritoDTO()
+            {
+                Producto = modelo.Result,
+                Cantidad = 1,
+                Precio = precioFinal,
+                Total = precioFinal
+            };
+        await carritoServicio.AddCarrito(carrito);
+        await Eliminar(idProducto);
+        toastService.ShowSuccess("Producto agregado al carrito");
+    }
+}

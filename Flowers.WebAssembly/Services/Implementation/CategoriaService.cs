@@ -45,7 +45,7 @@ namespace Flowers.WebAssembly.Services.Implementation
 
         public async Task<ResponseDTO<CategoriaDTO>> Get(int id)
         {
-            return await _httpClient.GetFromJsonAsync<ResponseDTO<CategoriaDTO>>($"Usuario/Get/{id}");
+            return await _httpClient.GetFromJsonAsync<ResponseDTO<CategoriaDTO>>($"Categoria/Get/{id}");
         }
 
         public async Task<ResponseDTO<List<CategoriaDTO>>> List(string buscar)
