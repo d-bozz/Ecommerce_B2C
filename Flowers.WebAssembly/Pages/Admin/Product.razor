@@ -89,17 +89,17 @@
 
     async Task OnFileChange(InputFileChangeEventArgs e)
     {
-        FileInfo fileInfo = new FileInfo(e.File.Name);
-        if (fileInfo.Extension.ToLower().Contains(".jpg") || fileInfo.Extension.ToLower().Contains(".png"))
-        {
+        //FileInfo fileInfo = new FileInfo(e.File.Name);
+        //if (fileInfo.Extension.ToLower().Contains(".jpg") || fileInfo.Extension.ToLower().Contains(".png"))
+        //{
 
-            var format = $"image/{fileInfo.Extension.Replace(".", "")}";
-            var resizeImage = await e.File.RequestImageFileAsync(format, 450, 300);
-            var buffer = new byte[resizeImage.Size];
-            await resizeImage.OpenReadStream().ReadAsync(buffer);
-            var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-            modelo.Imagen = imageData;
-        }
+        //    var format = $"image/{fileInfo.Extension.Replace(".", "")}";
+        //    var resizeImage = await e.File.RequestImageFileAsync(format, 450, 300);
+        //    var buffer = new byte[resizeImage.Size];
+        //    await resizeImage.OpenReadStream().ReadAsync(buffer);
+        //    var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+        //    modelo.Imagen = imageData;
+        //}
     }
 
     protected override async Task OnParametersSetAsync()

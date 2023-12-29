@@ -67,7 +67,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <AuthorizeView>
                                         <Authorized>
-                                            <li><a class="dropdown-item" href="perfil"><i class="fa fa-user"></i> Mi cuenta</a></li>
+                                            <li><a class="dropdown-item" href="perfil/@GetCurrentUserId(context.User)"><i class="fa fa-user"></i> Mi cuenta</a></li>
                                             <li><a class="dropdown-item" href="historial"><i class="fa fa-list"></i> Mis órdenes</a></li>
                                             <li><a class="dropdown-item" href="wishlist"><i class="fa fa-heart"></i> Mi lista de deseos</a></li>
                                             <li><a class="dropdown-item" href="cart"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
@@ -174,5 +174,11 @@
             await autenticacionExt.UpdateAuthenticationState(null);
             navManager.NavigateTo("/", true);
         }
+    }
+
+    private string GetCurrentUserId(ClaimsPrincipal user)
+    {
+        var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return userId;
     }
 }

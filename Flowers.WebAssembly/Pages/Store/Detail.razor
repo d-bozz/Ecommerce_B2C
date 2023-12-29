@@ -23,17 +23,25 @@
                 <div class="fs-5 mb-5">
                     @if (modelo.PrecioOferta != 0 && modelo.PrecioOferta < modelo.Precio)
                     {
-                        <span class="text-danger text-decoration-line-through">S/. @modelo.Precio</span>
-                        <span>S /.@modelo.PrecioOferta</span>
+                        <span class="text-danger text-decoration-line-through">$@modelo.Precio</span>
+                        <span>$@modelo.PrecioOferta</span>
                     }
                     else
                     {
-                        <span>S /.@modelo.Precio</span>
+                        <span>$@modelo.Precio</span>
                     }
                 </div>
                 <p class="lead">@modelo.Descripcion</p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" type="number" min="1" style="width:60px" @bind-value="cantidad">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button type="button" class="btn btn-outline-dark" @onclick="(() => Disminuir())">
+                                <i class="oi oi-minus"></i>
+                            </button>
+                            <input class="form-control" type="number" readonly="readonly" style="width:50px" @bind-value="cantidad" />
+                            <button type="button" class="btn btn-outline-dark" @onclick="(() => Aumentar())">
+                                <i class="oi oi-plus"></i>
+                            </button>
+                        </div>
                     <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button" @onclick="(async() => await AgregarCarrito(modelo))">
                         <i class="bi-cart-fill me-1"></i>
                         Agregar al carrito
@@ -42,10 +50,6 @@
                         <i class="bi-cart-fill me-1"></i>
                         Agregar a la lista de deseos
                     </button>
-                    <a class="btn btn-outline-dark flex-shrink-0" href="/catalogo">
-                        <i class="bi-cart-fill me-1"></i>
-                        Volver
-                    </a>
                 </div>
             </div>
         </div>
@@ -118,6 +122,21 @@
             // Manejo de error si el usuario no está autenticado
             toastService.ShowError("El usuario no se encuentra autenticado");
             _navServicio.NavigateTo("/login");
+        }
+    }
+
+    private void Disminuir()
+    {
+        if (cantidad > 1)
+        {
+            cantidad--;
+        }
+    }
+
+    private void Aumentar()
+    {
+        {
+            cantidad++;
         }
     }
 }
