@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ly6sSJ6R4D3mKOLv9QfuQKmOHacpRNpjaL0q+/rreD8=",
+  "Hash": "eSeF/Go6PKxtESqauHaReLLkgKKhwMhbcbhAWaN07ts=",
   "Source": "Flowers.WebAssembly",
   "BasePath": "/",
   "Mode": "Root",
@@ -7580,6 +7580,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\png\\icon-192.png"
+    },
+    {
+      "Identity": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\images\\png\\wsp.png",
+      "SourceId": "Flowers.WebAssembly",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "assets/images/png/wsp.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\png\\wsp.png"
     },
     {
       "Identity": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\images\\spring.jpg",

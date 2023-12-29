@@ -129,6 +129,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\png\\icon-192.png"
     },
     {
+      "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\images\\png\\wsp.png",
+      "PackagePath": "staticwebassets\\assets\\images\\png\\wsp.png"
+    },
+    {
       "Id": "C:\\Damian\\Flowers_B2C\\Flowers.WebAssembly\\wwwroot\\assets\\images\\spring.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\spring.jpg"
     },

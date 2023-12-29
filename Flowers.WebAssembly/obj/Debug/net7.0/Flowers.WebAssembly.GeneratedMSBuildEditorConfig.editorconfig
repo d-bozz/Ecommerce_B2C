@@ -76,6 +76,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xQcmVndW50YXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Terminos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xUZXJtaW5vcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Thanks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xUaGFua3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Cart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcQ2FydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -86,6 +94,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Detail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcRGV0YWlsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Wishlist.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcV2lzaGxpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/Footer.razor]
