@@ -1,0 +1,37 @@
+﻿
+.breadcrumb-area {
+    padding: 21px 0 22px;
+}
+
+.breadcrumb-content li {
+    color: #ff3d2a;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 28px;
+    position: relative;
+    font-weight: 500;
+}
+
+    .breadcrumb-content li a {
+        color: #242424;
+    }
+
+        .breadcrumb-content li a:hover {
+            color: #ff3d2a;
+        }
+
+    .breadcrumb-content li::before {
+        background-color: #aaaaaa;
+        content: "";
+        height: 2px;
+        position: absolute;
+        right: -22px;
+        top: 10px;
+        transform: rotate(-67deg);
+        transition: all 0.4s ease 0s;
+        width: 12px;
+    }
+
+    .breadcrumb-content li:last-child::before {
+        display: none;
+    }

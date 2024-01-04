@@ -8,85 +8,119 @@
 @inject NavigationManager _navServicio
 @inject AuthenticationStateProvider authenticationStateProvider;
 
-
 @using Microsoft.AspNetCore.Components.Authorization;
 @using System.Security.Claims;
 
 
-<div class="row">
-    <!-- Productos en la wishlist -->
-    <div class="col-sm-8">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-sm bg-light table-bordered">
-                        <thead class="table-dark">
-                            <tr class="text-center">
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
-                                <th>Agregar al Carrito</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (lista.Any())
-                            {
-                                foreach (var item in lista)
-                                {
-                                    if (item != null && item.Producto != null)
-                                    { 
-                                    <tr class="text-center">
-                                        <!-- Agregar la clase text-center aquí -->
-                                        <td valign="middle">
-                                                <img class="card-img-top" src="@item.Producto.Imagen" style="width:100px">
-                                        </td>
-                                        <td valign="middle">
-                                            <a href="detalle/@item.IdProducto">
-                                                    @item.Producto.Nombre
-                                            </a>
-                                        </td>
-                                            <td valign="middle">$@item.Producto.Precio</td>
-                                        <td valign="middle">En Stock</td>
-                                        <td valign="middle">
-                                            <button type="button" class="btn btn-outline-dark" @onclick="(async () => await AgregarCarrito(item.IdProducto))">
-                                                <i class="bi bi-cart-plus"></i>
-                                                Agregar al carrito
-                                            </button>
-                                        </td>
-                                        <td valign="middle">
-                                            <button type="button" class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.IdProducto))">
-                                                <i class="oi oi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <!-- Agregar la clase text-center aquí -->
-                                    <td colspan="6">
-                                        <div class="alert alert-warning" role="alert">
-                                            No hay productos en la lista de deseos
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+<!doctype html>
+<html lang="es">  
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Floreria Reynante</title>
+        <meta name="description" content="">
+        <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets2/img/favicon.png">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets2/css/animate.css">
+        <link rel="stylesheet" href="assets2/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets2/css/slick.css">
+        <link rel="stylesheet" href="assets2/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets2/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets2/css/simple-line-icons.css">
+        <link rel="stylesheet" href="assets2/css/jquery-ui.css">
+        <link rel="stylesheet" href="assets2/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets2/css/style.css">
+        <link rel="stylesheet" href="assets2/css/responsive.css">
+    </head>
+    <body>
+         <!-- shopping-cart-area start -->
+        <div class="cart-main-area pt-70 pb-75">
+            <div class="container">
+                <h3 class="page-title">Mi lista de deseos</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form action="#">
+                            <div class="table-content table-responsive wishlist">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Producto</th>
+                                            <th>Precio unidad</th>
+                                            <th>Stock</th>
+                                            <th>Cantidad</th>
+                                            <th>Subtotal</th>
+                                            <th>Agregar al carrito</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         @if (lista != null && lista.Any())
+                                        {
+                                            foreach (var item in lista)
+                                            {
+                                                <tr>
+                                                    <td class="product-thumbnail">
+                                                    <a href="detalle/@item.Producto.IdProducto"><img src="@item.Producto.Imagen" alt="imagen_producto" width="86" height="86"></a>
+                                                    </td>
+                                                <td class="product-name"><a href="detalle/@item.Producto.IdProducto">@item.Producto.Nombre</a></td>
+                                                <td class="product-price-cart"><span class="amount">$@item.Producto.PrecioOferta</span></td>
+                                                <td class="product-name"><a><strong>En Stock</strong></a></td>
+                                                <td valign="middle" align="center">
+                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                        <button type="button" class="btn btn-outline-dark" @onclick="(() =>Disminuir(item.Producto.IdProducto))">
+                                                            <i class="oi oi-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" readonly="readonly" style="width:50px" @bind-value="item.Cantidad" />
+                                                        <button type="button" class="btn btn-outline-dark" @onclick="(() =>Aumentar(item.Producto.IdProducto))">
+                                                            <i class="oi oi-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal">$@(item.Cantidad * item.Producto.PrecioOferta)</td>
+                                                <td class="pro-cart">
+                                                    <button class="btn btn-outline-dark" @onclick="(async () => await AgregarCarrito(item.Producto.IdProducto))">
+                                                        <i class="ion-android-cart"></i>
+                                                    </button>
+                                                </td>
+                                                <td >
+                                                    <button class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.Producto.IdProducto))">
+                                                        <i class="ion-trash-a"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr class="text-center">
+                                                <td colspan="6">
+                                                    <div class="alert alert-warning" role="alert">
+                                                        No hay productos en la lista de deseos
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
+    </body>
+</html>
 
 @code {
     private List<WishlistDTO> lista = new List<WishlistDTO>();
     private ProductoDTO producto;
+    private decimal? Total;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
@@ -117,7 +151,20 @@
             if (int.TryParse(idUsuario, out int idUsuarioInt))
             {
                 await GetWishlist(idUsuarioInt);
+                ActualizarTotal();
             }
+        }
+    }
+
+    private void ActualizarTotal()
+    {
+        if (lista.Any())
+        {
+            Total = lista.Sum(item => item.Cantidad * item.Producto.PrecioOferta);
+        }
+        else
+        {
+            Total = 0;
         }
     }
 
@@ -129,23 +176,53 @@
         {
             lista.Remove(producto);
             await wishlistServicio.Delete(producto.IdWishlist);
+            ActualizarTotal();
             toastService.ShowSuccess("Producto eliminado de la lista de deseos");
         }
     }
 
     private async Task AgregarCarrito(int idProducto)
     {
-        var modelo = await productoServicio.Get(idProducto);
-        decimal? precioFinal = (modelo.Result.PrecioOferta != 0 && modelo.Result.PrecioOferta < modelo.Result.Precio) ? modelo.Result.PrecioOferta : modelo.Result.Precio;
-        CarritoDTO carrito = new CarritoDTO()
-            {
-                Producto = modelo.Result,
-                Cantidad = 1,
-                Precio = precioFinal,
-                Total = precioFinal
-            };
-        await carritoServicio.AddCarrito(carrito);
-        await Eliminar(idProducto);
-        toastService.ShowSuccess("Producto agregado al carrito");
+        WishlistDTO wishlistItem = lista.First(i => i.Producto.IdProducto == idProducto);
+
+        if (wishlistItem != null)
+        {
+            Total = wishlistItem.Producto.PrecioOferta * wishlistItem.Cantidad;
+            CarritoDTO carrito = new CarritoDTO()
+                {
+                    Producto = wishlistItem.Producto,
+                    Cantidad = wishlistItem.Cantidad,
+                    Precio = wishlistItem.Producto.Precio,
+                    Total = Total
+                };
+
+            await carritoServicio.AddCarrito(carrito);
+            await Eliminar(idProducto);
+            toastService.ShowSuccess("Producto agregado al carrito");
+        }
+    }
+
+
+    private void Disminuir(int id)
+    {
+        WishlistDTO item = lista.First(i => i.Producto.IdProducto == id);
+
+        if (item.Cantidad - 1 > 0)
+        {
+            decimal? precioFinal = (item.Producto.PrecioOferta != 0 && item.Producto.PrecioOferta < item.Producto.Precio) ? item.Producto.PrecioOferta : item.Producto.Precio;
+
+            item.Cantidad--;
+            ActualizarTotal();
+        }
+    }
+
+    private void Aumentar(int id)
+    {
+        WishlistDTO item = lista.First(i => i.Producto.IdProducto == id);
+
+        decimal? precioFinal = (item.Producto.PrecioOferta != 0 && item.Producto.PrecioOferta < item.Producto.Precio) ? item.Producto.PrecioOferta : item.Producto.Precio;
+
+        item.Cantidad++;
+        ActualizarTotal();
     }
 }

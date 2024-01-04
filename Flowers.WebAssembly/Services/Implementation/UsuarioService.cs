@@ -60,6 +60,26 @@ namespace Flowers.WebAssembly.Services.Implementation
             return await _httpClient.GetFromJsonAsync<ResponseDTO<List<UsuarioDTO>>>($"Usuario/List/{rol}/{buscar}");
         }
 
+        public async Task<ResponseDTO<bool>> SendEmailForPasswordRecovery(UsuarioDTO model)
+        {
+            var response = await _httpClient.PostAsJsonAsync("Usuario/SendEmailForPasswordRecovery", model);
+            var result = await response.Content.ReadFromJsonAsync<ResponseDTO<bool>>();
+            return result;
+        }
+
+        public async Task<ResponseDTO<bool>> ChangePasswordWithToken(string token, string newPassword)
+        {
+            var model = new
+            {
+                Token = token,
+                NewPassword = newPassword
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("Usuario/ChangePasswordWithToken", model);
+            var result = await response.Content.ReadFromJsonAsync<ResponseDTO<bool>>();
+            return result;
+        }
+
         #endregion
     }
 }

@@ -9,63 +9,76 @@
 
 <!DOCTYPE html>
 <html lang="es">
+    
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Floreria Reynante</title>
+        <meta name="description" content="">
+        <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="assets/css/autorization/login.css" />
-</head>
-<body>
-<section class="container">
-    <div class="form">
-        <div class="form-content">
-            <header>Login</header>
-             <EditForm Model="modelo" OnValidSubmit="Start">
-            <DataAnnotationsValidator></DataAnnotationsValidator>
-                <div class="field input-field">
-                    <input class="form-control" id="inputEmail" type="email" placeholder="Email" @bind-value="modelo.Correo" autocomplete="off" />
-                    <ValidationMessage For="@(()=>modelo.Correo)" />
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets2/img/favicon.png">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets2/css/animate.css">
+        <link rel="stylesheet" href="assets2/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets2/css/slick.css">
+        <link rel="stylesheet" href="assets2/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets2/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets2/css/simple-line-icons.css">
+        <link rel="stylesheet" href="assets2/css/jquery-ui.css">
+        <link rel="stylesheet" href="assets2/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets2/css/style.css">
+        <link rel="stylesheet" href="assets2/css/responsive.css">
+    </head>
+    <body>
+        <div class="login-register-area pt-70 pb-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 ms-auto me-auto">
+                        <div class="login-register-wrapper">
+                            <div class="login-register-tab-list nav">
+                                <a class="active" data-bs-toggle="tab">
+                                    <h4> login </h4>
+                                </a>
+                            </div>
+                            <div class="tab-content">
+                                <div id="lg1" class="tab-pane active">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+                                                <EditForm Model="modelo" OnValidSubmit="Start">
+                                                <input id="inputEmail" type="email" name="email" placeholder="Email" @bind-value="modelo.Correo">
+                                                <ValidationMessage For="@(()=>modelo.Correo)" />
+                                                
+                                                <div class="password-input">
+                                                    <input id="inputPassword" type="@((modelo.MostrarClave) ? "text" : "password")" placeholder="Clave" @bind-value="modelo.Clave" name="user-password">
+                                                    <i class="@((modelo.MostrarClave) ? "ion-eye" : "ion-eye-disabled")" @onclick="TogglePasswordVisibility"></i>
+                                                </div>
+                                                <ValidationMessage For="@(()=>modelo.Clave)" />
+                                                <div class="button-box">
+                                                    <div class="login-toggle-btn">
+                                                        <input type="checkbox">
+                                                        <label>Recordar</label>
+                                                        <a href="passwordrecovery">¿Olvidaste la clave?</a>
+                                                        <br />
+                                                        <a href="registro">¿No tienes una cuenta? Registrarse</a>
+                                                    </div>
+                                                <button type="submit"><span>Ingresar</span></button>
+                                                </div>
+                                        </EditForm>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="field input-field">
-                    <input class="form-control" id="inputPassword" type="@((modelo.MostrarClave) ? "text" : "password")" placeholder="Clave" @bind-value="modelo.Clave" autocomplete="off" />
-                    <i class="@((modelo.MostrarClave) ? "bx bx-show eye-icon" : "bx bx-hide eye-icon")" @onclick="TogglePasswordVisibility"></i>
-                    <ValidationMessage For="@(()=>modelo.Clave)" />
-                </div>
-
-                <div class="form-link">
-                    <a href="/passwordrecovery" class="forgot-pass">¿Olvidaste la clave?</a>
-                </div>
-
-                <div class="field button-field">
-                    <button>Ingresar</button>
-                </div>
-            </EditForm>
-            <div class="form-link">
-                <span>¿No tienes una cuenta? <a href="/registro" class="link signup-link">Registrarse</a></span>
             </div>
         </div>
-        
-        <div class="line"></div>
-
-        <div class="media-options">
-            <a href="#" class="field facebook">
-                    <img src="assets/images/svg/facebook-logo.svg" alt="Facebook" class="facebook-img" />
-                <span>Ingresar con Facebook</span>
-            </a>
-        </div>
-
-        <div class="media-options">
-            <a href="#" class="field google">
-                    <img src="assets/images/svg/google-logo.svg" alt="Google" class="google-img" />
-                <span>Ingresar con Google</span>
-            </a>
-        </div>
-    </div>
-</section>
-</body>
+    </body>
 </html>
 
 @code {

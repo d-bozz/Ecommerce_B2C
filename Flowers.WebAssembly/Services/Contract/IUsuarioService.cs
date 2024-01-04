@@ -10,5 +10,7 @@ namespace Flowers.WebAssembly.Services.Contract
         Task<ResponseDTO<UsuarioDTO>> Create(UsuarioDTO model);
         Task<ResponseDTO<bool>> Edit(UsuarioDTO model);
         Task<ResponseDTO<bool>> Delete(int id);
+        Task<ResponseDTO<bool>> SendEmailForPasswordRecovery(UsuarioDTO model);
+        Task<ResponseDTO<bool>> ChangePasswordWithToken(string token, string newPassword);
     }
 }

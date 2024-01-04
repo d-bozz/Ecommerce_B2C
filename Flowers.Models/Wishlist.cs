@@ -11,6 +11,8 @@ public partial class Wishlist
 
     public int? IdProducto { get; set; }
 
+    public int? Cantidad { get; set; }
+
     public DateTime? FechaCreacion { get; set; }
 
     public virtual Producto? IdProductoNavigation { get; set; }

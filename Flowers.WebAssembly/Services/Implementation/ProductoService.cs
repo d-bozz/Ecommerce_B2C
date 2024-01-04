@@ -49,7 +49,18 @@ namespace Flowers.WebAssembly.Services.Implementation
 
         public async Task<ResponseDTO<ProductoDTO>> Get(int id)
         {
-            return await _httpClient.GetFromJsonAsync<ResponseDTO<ProductoDTO>>($"Producto/Get/{id}");
+            var response = await _httpClient.GetFromJsonAsync<ResponseDTO<ProductoDTO>>($"Producto/Get/{id}");
+
+            if (response == null || !response.IsCorrect || response.Result == null)
+            {
+                return new ResponseDTO<ProductoDTO>
+                {
+                    IsCorrect = false,
+                    Message = "La respuesta del servicio no es válida."
+                };
+            }
+
+            return response;
         }
 
         public async Task<ResponseDTO<List<ProductoDTO>>> List(string buscar)

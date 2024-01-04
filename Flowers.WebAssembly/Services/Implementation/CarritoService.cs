@@ -122,6 +122,31 @@ namespace Flowers.WebAssembly.Services.Implementation
             return carrito;
         }
 
+        public decimal TotalProducts()
+        {
+            try
+            {
+                var carrito = _syncLocalStorageService.GetItem<List<CarritoDTO>>("carrito");
+                decimal total = 0;
+
+                if (carrito == null || !carrito.Any())
+                {
+                    return 0;
+                }
+
+                foreach (CarritoDTO item in carrito)
+                {
+                    total = (decimal)carrito.Sum(item => item.Total);
+                }
+
+                return total;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         #endregion
     }
 }

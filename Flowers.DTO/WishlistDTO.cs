@@ -14,6 +14,8 @@ namespace Flowers.DTO
 
         public int IdProducto { get; set; }
 
+        public int? Cantidad { get; set; }
+
         public ProductoDTO? Producto { get; set; }
 
         public DateTime? FechaCreacion { get; set; }

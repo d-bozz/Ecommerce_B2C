@@ -12,6 +12,7 @@ namespace Flowers.WebAssembly.Services.Contract
         event Action ShowItems;
 
         int QuantityProducts();
+        decimal TotalProducts();
         Task AddCarrito(CarritoDTO model);
         Task RemoveCarrito(int idProducto);
         Task<List<CarritoDTO>> ReturnCarrito();

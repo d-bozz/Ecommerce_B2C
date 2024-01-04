@@ -1,0 +1,40 @@
+﻿@page "/breadcrumb"
+@inject NavigationManager NavigationManager
+
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="inicio">Inicio </a></li>
+                    <li class="active"> @CurrentPage</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string CurrentPage { get; set; } = "Inicio";
+
+    protected override void OnInitialized()
+    {
+        UpdateCurrentPage(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs args)
+    {
+        UpdateCurrentPage(args.Location);
+        StateHasChanged();
+    }
+
+    private void UpdateCurrentPage(string uri)
+    {
+        var absoluteUri = NavigationManager.ToAbsoluteUri(uri);
+        CurrentPage = absoluteUri.Segments.LastOrDefault()?.Trim('/') ?? "Inicio";
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}

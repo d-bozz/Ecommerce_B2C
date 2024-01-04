@@ -9,7 +9,357 @@
 @inject IToastService toastService
 @inject NavigationManager _navServicio
 
-<div class="container px-4 px-lg-5 my-5">
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+    
+<!-- Mirrored from htmldemo.net/phuler/phuler/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 18:30:34 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Phuler - Flower eCommerce Bootstrap 5 Template</title>
+        <meta name="description" content="">
+        <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets2/img/favicon.png">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets2/css/animate.css">
+        <link rel="stylesheet" href="assets2/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets2/css/slick.css">
+        <link rel="stylesheet" href="assets2/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets2/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets2/css/simple-line-icons.css">
+        <link rel="stylesheet" href="assets2/css/jquery-ui.css">
+        <link rel="stylesheet" href="assets2/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets2/css/style.css">
+        <link rel="stylesheet" href="assets2/css/responsive.css">
+    </head>
+    <body>
+        @if (modelo != null)
+        {
+            <div class="product-details pt-75 pb-65">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="product-details-img">
+                                <img class="zoompro" src="@modelo.Imagen" data-zoom-image="assets2/img/product-details/product-detalis-bl1.jpg" alt="zoom"/>
+                                <div id="gallery" class="mt-20 product-dec-slider owl-carousel">
+                                    <a data-image="assets2/img/product-details/product-detalis-l1.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl1.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s1.jpg" alt="">
+                                    </a>
+                                    <a data-image="assets2/img/product-details/product-detalis-l2.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl2.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s2.jpg" alt="">
+                                    </a>
+                                    <a data-image="assets2/img/product-details/product-detalis-l3.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl3.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s3.jpg" alt="">
+                                    </a>
+                                    <a data-image="assets2/img/product-details/product-detalis-l4.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl4.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s4.jpg" alt="">
+                                    </a>
+                                    <a data-image="assets2/img/product-details/product-detalis-l5.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl5.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s5.jpg" alt="">
+                                    </a>
+                                    <a data-image="assets2/img/product-details/product-detalis-l2.jpg" data-zoom-image="assets2/img/product-details/product-detalis-bl2.jpg">
+                                        <img src="assets2/img/product-details/product-detalis-s2.jpg" alt="">
+                                    </a>
+                                </div>
+                                <span>-29%</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="product-details-content">
+                                <h4>@modelo.Nombre</h4>
+                                <div class="rating-review">
+                                    <div class="pro-dec-rating">
+                                        <i class="ion-android-star-outline theme-star"></i>
+                                        <i class="ion-android-star-outline theme-star"></i>
+                                        <i class="ion-android-star-outline theme-star"></i>
+                                        <i class="ion-android-star-outline theme-star"></i>
+                                        <i class="ion-android-star-outline"></i>
+                                    </div>
+                                    <div class="pro-dec-review">
+                                        <ul>
+                                            <li>32 Reviews </li>
+                                            <li> Agregar un Review</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span>$@modelo.PrecioOferta</span>
+                                <div class="in-stock">
+                                    <p>Disponibilidad: <span>En stock</span></p>
+                                </div>
+                                <p>@modelo.Descripcion</p>
+                                <div class="pro-dec-feature">
+                                    <ul>
+                                        <li><input type="checkbox"> Protection Plan: <span> 2 year  $4.99</span></li>
+                                        <li><input type="checkbox"> Remote Holder: <span> $9.99</span></li>
+                                        <li><input type="checkbox"> Koral Alexa Voice Remote Case: <span> Red  $16.99</span></li>
+                                        <li><input type="checkbox"> Amazon Basics HD Antenna: <span>25 Mile  $14.99</span></li>
+                                    </ul>
+                                </div>
+                                <div class="quality-add-to-cart">
+                                    <div class="quality">
+                                        <label>Cantidad:</label>
+                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <button type="button" class="btn btn-outline-dark" @onclick="(() => Disminuir())">
+                                            <i class="oi oi-minus"></i>
+                                        </button>
+                                        <input class="form-control" type="number" readonly="readonly" style="width:50px" @bind-value="cantidad" />
+                                        <button type="button" class="btn btn-outline-dark" @onclick="(() => Aumentar())">
+                                            <i class="oi oi-plus"></i>
+                                        </button>
+                                    </div>
+                                    </div>
+                                    <div class="shop-list-cart-wishlist">
+                                    <button class="btn btn-outline-dark" title="Agregar al carrito" @onclick="(async() => await AgregarCarrito(modelo))">
+                                            <i class="icon-handbag"></i>
+                                        </button>
+                                    <button class="btn btn-outline-dark" title="Wishlist" @onclick="(async() => await AgregarWishlist(modelo))">
+                                            <i class="icon-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="pro-dec-categories">
+                                    <ul>
+                                        <li class="categories-title">Categorias:</li>
+                                        <li><a href="#">Birthday,</a></li>
+                                        <li><a href="#"> Bouquets, </a></li>
+                                        <li><a href="#">Custom Orders,</a></li>
+                                        <li><a href="#">Home Decor,</a></li>
+                                        <li><a href="#">Weddings, </a></li>
+                                    </ul>
+                                </div>
+                                <div class="pro-dec-categories">
+                                    <ul>
+                                        <li class="categories-title">Etiquetas: </li>
+                                        <li><a href="#"> Bouquet,</a></li>
+                                        <li><a href="#"> Event, </a></li>
+                                        <li><a href="#"> Gift,</a></li>
+                                        <li><a href="#"> Joy,</a></li>
+                                        <li><a href="#"> Love </a></li>
+                                    </ul>
+                                </div>
+                                <div class="pro-dec-social">
+                                    <ul>
+                                        <li><a class="tweet" href="#"><i class="ion-social-twitter"></i> Twiter</a></li>
+                                        <li><a class="share" href="#"><i class="ion-social-facebook"></i> Facebook</a></li>
+                                        <li><a class="google" href="#"><i class="ion-social-googleplus-outline"></i> Google+</a></li>
+                                        <li><a class="pinterest" href="#"><i class="ion-social-pinterest"></i> Pinterest</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description-review-area pb-70">
+                <div class="container">
+                    <div class="description-review-wrapper">
+                        <div class="description-review-topbar nav text-center">
+                            <a class="active" data-bs-toggle="tab" href="#des-details1">Descripción</a>
+                            <a data-bs-toggle="tab" href="#des-details2">Etiquetas</a>
+                            <a data-bs-toggle="tab" href="#des-details3">Review</a>
+                        </div>
+                        <div class="tab-content description-review-bottom">
+                            <div id="des-details1" class="tab-pane active">
+                                <div class="product-description-wrapper">
+                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem. </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                                    <ul>
+                                        <li>-  Typi non habent claritatem insitam</li>
+                                        <li>-  Est usus legentis in iis qui facit eorum claritatem. </li>
+                                        <li>-  Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</li>
+                                        <li>-  Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="des-details2" class="tab-pane">
+                                <div class="product-anotherinfo-wrapper">
+                                    <ul>
+                                        <li><span>Etiquetas:</span></li>
+                                        <li><a href="#"> bouquet,</a></li>
+                                        <li><a href="#"> event,</a></li>
+                                        <li><a href="#"> gift,</a></li>
+                                        <li><a href="#"> joy,</a></li>
+                                        <li><a href="#"> love ,</a></li>
+                                        <li><a href="#"> special</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="des-details3" class="tab-pane">
+                                <div class="rattings-wrapper">
+                                    <div class="sin-rattings">
+                                        <div class="star-author-all">
+                                            <div class="ratting-star f-left">
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <span>(5)</span>
+                                            </div>
+                                            <div class="ratting-author f-right">
+                                                <h3>tayeb rayed</h3>
+                                                <span>12:24</span>
+                                                <span>9 March 2022</span>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
+                                    </div>
+                                    <div class="sin-rattings">
+                                        <div class="star-author-all">
+                                            <div class="ratting-star f-left">
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <i class="ion-star theme-color"></i>
+                                                <span>(5)</span>
+                                            </div>
+                                            <div class="ratting-author f-right">
+                                                <h3>farhana shuvo</h3>
+                                                <span>12:24</span>
+                                                <span>9 March 2022</span>
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
+                                    </div>
+                                </div>
+                                <div class="ratting-form-wrapper">
+                                    <h3>Agrega tus Comentarios:</h3>
+                                    <div class="ratting-form">
+                                        <form action="#">
+                                            <div class="star-box">
+                                                <h2>Puntuación:</h2>
+                                                <div class="ratting-star">
+                                                    <i class="ion-star theme-color"></i>
+                                                    <i class="ion-star theme-color"></i>
+                                                    <i class="ion-star theme-color"></i>
+                                                    <i class="ion-star theme-color"></i>
+                                                    <i class="ion-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <input placeholder="Nombre" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <input placeholder="Correo" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="rating-form-style form-submit">
+                                                        <textarea name="message" placeholder="Mensaje"></textarea>
+                                                        <input type="submit" value="Agregar Review">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <!-- Thumbnail Large Image start -->
+                                    <div class="tab-content">
+                                        <div id="pro-1" class="tab-pane fade show active">
+                                            <img src="assets2/img/product-details/product-detalis-l1.jpg" alt="">
+                                        </div>
+                                        <div id="pro-2" class="tab-pane fade">
+                                            <img src="assets2/img/product-details/product-detalis-l2.jpg" alt="">
+                                        </div>
+                                        <div id="pro-3" class="tab-pane fade">
+                                            <img src="assets2/img/product-details/product-detalis-l3.jpg" alt="">
+                                        </div>
+                                        <div id="pro-4" class="tab-pane fade">
+                                            <img src="assets2/img/product-details/product-detalis-l4.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <!-- Thumbnail Large Image End -->
+                                    <!-- Thumbnail Image End -->
+                                    <div class="product-thumbnail">
+                                        <div class="thumb-menu owl-carousel nav nav-style" role="tablist">
+                                            <button class="active" data-bs-toggle="tab" data-bs-target="#pro-1"><img src="assets2/img/product-details/product-detalis-s1.jpg" alt=""></button>
+                                            <button data-bs-toggle="tab" data-bs-target="#pro-2"><img src="assets2/img/product-details/product-detalis-s2.jpg" alt=""></button>
+                                            <button data-bs-toggle="tab" data-bs-target="#pro-3"><img src="assets2/img/product-details/product-detalis-s3.jpg" alt=""></button>
+                                            <button data-bs-toggle="tab" data-bs-target="#pro-4"><img src="assets2/img/product-details/product-detalis-s4.jpg" alt=""></button>
+                                        </div>
+                                    </div>
+                                    <!-- Thumbnail image end -->
+                                </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                    <div class="modal-pro-content">
+                                        <h3>Dutchman's Breeches </h3>
+                                        <div class="product-price-wrapper">
+                                            <span class="product-price-old">£162.00 </span>
+                                            <span>£120.00</span>
+                                        </div>
+                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet.</p>	
+                                        <div class="quick-view-select">
+                                            <div class="select-option-part">
+                                                <label>Size*</label>
+                                                <select class="select">
+                                                    <option value="">S</option>
+                                                    <option value="">M</option>
+                                                    <option value="">L</option>
+                                                </select>
+                                            </div>
+                                            <div class="quickview-color-wrap">
+                                                <label>Color*</label>
+                                                <div class="quickview-color">
+                                                    <ul>
+                                                        <li class="blue">b</li>
+                                                        <li class="red">r</li>
+                                                        <li class="pink">p</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
+                                            </div>
+                                            <button>Add to cart</button>
+                                        </div>
+                                        <span><i class="fa fa-check"></i> In stock</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal end -->
+        }
+    </body>
+</html>
+
+
+
+
+
+
+
+
+@*<div class="container px-4 px-lg-5 my-5">
 
 
     @if (modelo != null)
@@ -64,7 +414,7 @@
 
 
 </div>
-
+*@
 @code {
     [Parameter] public int Id { get; set; }
     private ProductoDTO? modelo = null;

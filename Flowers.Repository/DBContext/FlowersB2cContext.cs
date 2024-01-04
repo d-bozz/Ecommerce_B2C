@@ -167,6 +167,7 @@ public partial class FlowersB2cContext : DbContext
                 .HasColumnName("fecha_creacion");
             entity.Property(e => e.IdProducto).HasColumnName("id_producto");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
 
             entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.Wishlists)
                 .HasForeignKey(d => d.IdProducto)

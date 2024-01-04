@@ -9,134 +9,195 @@
 @using System.Security.Claims;
 
 
-<div class="row">
-    <!-- Productos en el carrito -->
-    <div class="col-sm-8">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-sm bg-light table-bordered">
-                        <thead class="table-dark">
-                            <tr class="text-center">
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (lista.Any())
-                            {
-                                foreach (var item in lista)
-                                {
-                                    <tr class="text-center">
-                                        <!-- Agregar la clase text-center aquí -->
-                                        <td valign="middle">
-                                            <img class="card-img-top" src="@item.Producto.Imagen" style="width:100px">
-                                        </td>
-                                        <td valign="middle">
-                                            <a href="detalle/@item.Producto.IdProducto">
-                                                @item.Producto.Nombre
-                                            </a>
-                                        </td>
-                                        <td valign="middle">$@item.Precio</td>
-                                        <td valign="middle" align="center">
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-dark" @onclick="(() =>Disminuir(item.Producto.IdProducto))">
-                                                    <i class="oi oi-minus"></i>
-                                                </button>
-                                                <input class="form-control" readonly="readonly" style="width:50px" @bind-value="item.Cantidad" />
-                                                <button type="button" class="btn btn-outline-dark" @onclick="(() =>Aumentar(item.Producto.IdProducto))">
-                                                    <i class="oi oi-plus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td valign="middle">$@item.Total</td>
-                                        <td valign="middle">
-                                            <button type="button" class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.Producto.IdProducto))">
-                                                <i class="oi oi-trash"></i>
-                                            </button>
-                                        </td>
+<!doctype html>
+<html lang="es">
+    
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Floreria Reynante</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets2/img/favicon.png">
+		
+	<!-- all css here -->
+    <link rel="stylesheet" href="assets2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets2/css/animate.css">
+    <link rel="stylesheet" href="assets2/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets2/css/slick.css">
+    <link rel="stylesheet" href="assets2/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets2/css/simple-line-icons.css">
+    <link rel="stylesheet" href="assets2/css/jquery-ui.css">
+    <link rel="stylesheet" href="assets2/css/meanmenu.min.css">
+    <link rel="stylesheet" href="assets2/css/style.css">
+    <link rel="stylesheet" href="assets2/css/responsive.css">
+</head>
+    <body>
+         <!-- shopping-cart-area start -->
+        <div class="cart-main-area pt-60 pb-65">
+            <div class="container">
+                <h3 class="page-title">Your cart items</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive wishlist">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Producto</th>
+                                        <th>Precio unidad</th>
+                                        <th>Stock</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                        <th>Eliminar</th>
                                     </tr>
-                                }
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <!-- Agregar la clase text-center aquí -->
-                                    <td colspan="6">
-                                        <div class="alert alert-warning" role="alert">
-                                            No hay productos en el carrito
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Información de Pago -->
-    <div class="col-sm-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <!-- Subtotal -->
-                <div class="d-flex justify-content-between">
-                    <div class="fw-bold">Subtotal:</div>
-                    <div>
-                        @(string.Format("{0:C}", lista.Sum(i => i.Total)))
-                    </div>
-                </div>
-                <hr />
-                <!-- Envío -->
-                <div class="d-flex justify-content-between">
-                    <div class="fw-bold">Envío:</div>
-                    <div>@(string.Format("{0:C}", envio))</div>
-                </div>
-                <hr />
-                <!-- Total a pagar -->
-                <div class="d-flex justify-content-between">
-                    <div class="fw-bold">Total a pagar:</div>
-                    <div>
-                        @(string.Format("{0:C}", lista.Sum(i => i.Total) + envio))
-                    </div>
-                </div>
-                <hr />
-                <!-- Realizar Checkout -->
-                <div class="mt-2">
-                    <div class="d-grid gap-1">
-                        <button class="btn btn-dark btn-lg" href="/checkout" disabled="@disabled">Realizar Checkout</button>
-                    </div>
-                </div>
-                <!-- Mensaje de inicio de sesión -->
-                <AuthorizeView>
-                    <NotAuthorized>
-                        <div class="alert alert-danger mt-2" role="alert">
-                            Debe iniciar sesión para poder realizar la compra.
+                                </thead>
+                                <tbody>
+                                    @if (lista != null && lista.Any())
+                                    {
+                                        foreach (var item in lista)
+                                        {
+                                            <tr>
+                                                <td class="product-thumbnail">
+                                                    <a href="detalle/@item.Producto.IdProducto"><img src="@item.Producto.Imagen" alt="imagen_producto" width="86" height="86"></a>
+                                                </td>
+                                                <td class="product-name"><a href="detalle/@item.Producto.IdProducto">@item.Producto.Nombre</a></td>
+                                                <td class="product-price-cart"><span class="amount">$@item.Producto.PrecioOferta</span></td>
+                                                <td class="product-name"><a><strong>En Stock</strong></a></td>
+                                                <td valign="middle" align="center">
+                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                        <button type="button" class="btn btn-outline-dark" @onclick="(() =>Disminuir(item.Producto.IdProducto))">
+                                                            <i class="oi oi-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" readonly="readonly" style="width:50px" @bind-value="item.Cantidad" />
+                                                        <button type="button" class="btn btn-outline-dark" @onclick="(() =>Aumentar(item.Producto.IdProducto))">
+                                                            <i class="oi oi-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal">$@(item.Cantidad * item.Producto.PrecioOferta)</td>
+                                                <td>
+                                                    <button class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.Producto.IdProducto))">
+                                                        <i class="ion-trash-a"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr class="text-center">
+                                            <td colspan="6">
+                                                <div class="alert alert-warning" role="alert">
+                                                    No hay productos en el carrito de compras.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-                    </NotAuthorized>
-                </AuthorizeView>
+                    </form>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="cart-tax">
+                                    <div class="title-wrap">
+                                        <h4 class="cart-bottom-title section-bg-gray">Estimar costos de envío e impuestos</h4>
+                                    </div>
+                                    <div class="tax-wrapper">
+                                        <p>Ingrese el destino para estimar gastos de envío.</p>
+                                        <div class="tax-select-wrapper">
+                                            <div class="tax-select">
+                                                <label>
+                                                    * Departamento
+                                                </label>
+                                                <select class="email s-email s-wid">
+                                                    <option value="Artigas">Artigas</option>
+                                                    <option value="Canelones">Canelones</option>
+                                                    <option value="Cerro Largo">Cerro Largo</option>
+                                                    <option value="Colonia">Colonia</option>
+                                                    <option value="Durazno">Durazno</option>
+                                                    <option value="Flores">Flores</option>
+                                                    <option value="Florida">Florida</option>
+                                                    <option value="Lavalleja">Lavalleja</option>
+                                                    <option value="Maldonado">Maldonado</option>
+                                                    <option value="Montevideo">Montevideo</option>
+                                                    <option value="Paysandú">Paysandú</option>
+                                                    <option value="Río Negro">Río Negro</option>
+                                                    <option value="Rivera">Rivera</option>
+                                                    <option value="Rocha">Rocha</option>
+                                                    <option value="Salto">Salto</option>
+                                                    <option value="San José">San José</option>
+                                                    <option value="Soriano">Soriano</option>
+                                                    <option value="Tacuarembó">Tacuarembó</option>
+                                                    <option value="Treinta y Tres">Treinta y Tres</option>
+                                                </select>
+                                            </div>
+                                            <div class="tax-select">
+                                                <label>
+                                                    * Localidad
+                                                </label>
+                                                <select class="email s-email s-wid">
+                                                    <option>Atlantida</option>
+                                                    <option>Parque del plata</option>
+                                                    <option>Las Toscas</option>
+                                                    <option>Las vegas</option>
+                                                    <option>Floresta</option>
+                                                </select>
+                                            </div>
+                                            <div class="tax-select">
+                                                <label>
+                                                    * Código postal
+                                                </label>
+                                                <input type="text">
+                                            </div>
+                                            <button class="cart-btn-2" type="submit">Obtener una cotización</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="discount-code-wrapper">
+                                    <div class="title-wrap">
+                                       <h4 class="cart-bottom-title section-bg-gray">Usar un cupón de descuento</h4> 
+                                    </div>
+                                    <div class="discount-code">
+                                    <p>Ingrese su código de cupón si tiene uno.</p>
+                                        <form>
+                                            <input type="text" required="" name="name">
+                                            <button class="cart-btn-2" type="submit">Aplicar Cupón</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="grand-totall">
+                                    <div class="title-wrap">
+                                        <h4 class="cart-bottom-title section-bg-gary-cart">Total del Carrito</h4>
+                                    </div>
+                                    <h5>Total de productos <span>$260.00</span></h5>
+                                    <div class="total-shipping">
+                                        <h5>Total de envío</h5>
+                                        <ul>
+                                            <li><input type="checkbox"> Estandar <span>$20.00</span></li>
+                                            <li><input type="checkbox"> Express <span>$30.00</span></li>
+                                        </ul>
+                                    </div>
+                                    <h4 class="grand-totall-title">Valor Total de la compra:<span>$260.00</span></h4>
+                                    <a href="checkout">Proceder al Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Cupon de descuento -->
-        <div class="col-sm-5">
-        <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Cupón de descuento</h5>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Cupón de descuento" aria-label="Cupón de descuento" aria-describedby="button-addon2">
-                    <button class="btn btn-dark btn-lg" type="button" id="button-addon2">Aplicar</button>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
+    </body>
+</html>
 
 
 @code {
