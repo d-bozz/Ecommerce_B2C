@@ -11,9 +11,8 @@
 
 
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html lang="es">
     
-<!-- Mirrored from htmldemo.net/phuler/phuler/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 18:30:34 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -353,68 +352,6 @@
 </html>
 
 
-
-
-
-
-
-
-@*<div class="container px-4 px-lg-5 my-5">
-
-
-    @if (modelo != null)
-    {
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
-                <img class="card-img-top border-dark border-1" src="@modelo.Imagen" style="width:100%;">
-            </div>
-            <div class="col-md-6">
-                <h1 class="display-5 fw-bolder">@modelo.Nombre</h1>
-                <div class="fs-5 mb-5">
-                    @if (modelo.PrecioOferta != 0 && modelo.PrecioOferta < modelo.Precio)
-                    {
-                        <span class="text-danger text-decoration-line-through">$@modelo.Precio</span>
-                        <span>$@modelo.PrecioOferta</span>
-                    }
-                    else
-                    {
-                        <span>$@modelo.Precio</span>
-                    }
-                </div>
-                <p class="lead">@modelo.Descripcion</p>
-                <div class="d-flex">
-                        <div class="btn-group" role="group" aria-label="Basic outlined example">
-                            <button type="button" class="btn btn-outline-dark" @onclick="(() => Disminuir())">
-                                <i class="oi oi-minus"></i>
-                            </button>
-                            <input class="form-control" type="number" readonly="readonly" style="width:50px" @bind-value="cantidad" />
-                            <button type="button" class="btn btn-outline-dark" @onclick="(() => Aumentar())">
-                                <i class="oi oi-plus"></i>
-                            </button>
-                        </div>
-                    <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button" @onclick="(async() => await AgregarCarrito(modelo))">
-                        <i class="bi-cart-fill me-1"></i>
-                        Agregar al carrito
-                    </button>
-                    <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button" @onclick="(async() => await AgregarWishlist(modelo))">
-                        <i class="bi-cart-fill me-1"></i>
-                        Agregar a la lista de deseos
-                    </button>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    }
-
-
-
-</div>
-*@
 @code {
     [Parameter] public int Id { get; set; }
     private ProductoDTO? modelo = null;
@@ -463,13 +400,11 @@
             }
             else
             {
-                // Manejo de error si no se pudo obtener el ID del usuario
                 toastService.ShowError("No se pudo obtener el ID del usuario");
             }
         }
         else
         {
-            // Manejo de error si el usuario no está autenticado
             toastService.ShowError("El usuario no se encuentra autenticado");
             _navServicio.NavigateTo("/login");
         }
