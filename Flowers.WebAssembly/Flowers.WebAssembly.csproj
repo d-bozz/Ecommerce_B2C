@@ -20,9 +20,4 @@
     <ProjectReference Include="..\Flowers.DTO\Flowers.DTO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\assets\css\autorization\passwordRecovery.css" />
-    <None Include="wwwroot\assets\css\autorization\register.css" />
-  </ItemGroup>
-
 </Project>
