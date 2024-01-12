@@ -1,4 +1,5 @@
 ﻿@page "/categorias"
+@layout _DashboardLayout
 
 @inject ICategoriaService categoriaService;
 @inject IToastService toastService;
@@ -9,63 +10,61 @@
 @attribute [Authorize(Roles = "Administrador")];
 
 
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
-        <div class="d-grid gap-1 col-12 mx-auto">
-            <a class="btn btn-primary" href="/categoria">Nueva Categoria</a>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar categoria..." @bind-value="buscar">
-            <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await ObtenerCategorias(buscar))">
-                <i class="oi oi-magnifying-glass"></i>
-            </button>
-        </div>
-    </div>
-</div>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Categorias</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Categorias</li>
+        </ol>
 
-<div class="row gx-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-2">
+        <div class="mb-3">
+            <a class="btn btn-primary" href="/categoria"><i class="oi oi-plus fs-5"></i>Agregar Nueva Categoría</a>
+        </div>
 
-    @if (lista != null)
-    {
-        foreach (var item in lista)
-        {
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <div class="text-center">
-                                <i class="oi oi-folder" style="font-size:50px"></i>
-                            </div>
-                            <div class="text-start">
-                                <p class="m-1"><b>Nombre:</b>@item.Nombre</p>
-                            </div>
-                        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                @if (lista != null)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Modificar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in lista)
+                            {
+                                <tr>
+                                    <th scope="row">@item.IdCategoria</th>
+                                    <td>@item.Nombre</td>
+                                    <td><a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/categoria/@item.IdCategoria"><i class="oi oi-pencil fs-5"></i></a></td>
+                                    <td><a class="col-5 btn btn-sm btn-outline-danger mt-auto" @onclick="(async () => await Eliminar(item))"><i class="oi oi-trash fs-5"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
-                    <div class="card-footer bg-transparent">
-                        <div class="row justify-content-between">
-                            <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/categoria/@item.IdCategoria"><i class="oi oi-pencil fs-5"></i></a>
-                            <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Eliminar(item))">
-                                <i class="oi oi-trash fs-5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
-        }
-    }
-    else
-    {
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
         </div>
-    }
+
+        <div style="height: 100vh"></div>
+        <div class="card mb-4">
+            <div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div>
+        </div>
+    </div>
+</main>
 
 
-
-
-</div>
 @code {
     private List<CategoriaDTO>? lista = null;
     private string buscar = "";

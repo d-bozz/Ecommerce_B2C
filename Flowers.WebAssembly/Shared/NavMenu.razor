@@ -22,7 +22,7 @@
                                             <p>Bienvenido - @context.User.Claims.Where(c => c.Type == ClaimTypes.Email).Select(c => c.Value).SingleOrDefault()</p>
                                         </Authorized>
                                         <NotAuthorized>
-                                            <p>Iniciar sesión</p>
+                                            <p><a href="login">Iniciar sesión</a></p>
                                         </NotAuthorized>
                                 </AuthorizeView>                            
                             </div>
@@ -31,31 +31,22 @@
                             <div class="account-curr-lang-wrap f-right">
                                 <ul>
                                     <li class="top-hover">
-                                        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                        <a href="#">Mi cuenta<i class="ion-chevron-down"></i></a>
+                                <AuthorizeView>
+                                    <Authorized>
                                         <ul>
-                                            <li><a href="wishlist.html">Wishlist  </a></li>
-                                            <li><a href="login-register.html">Login</a></li>
-                                            <li><a href="login-register.html">Register</a></li>
-                                            <li><a href="my-account.html">my account</a></li>
+                                            <li><a href="wishlist">Wishlist  </a></li>
+                                            <li><a href="perfil/@GetCurrentUserId(context.User)">Perfil</a></li>
+                                            <li><a @onclick="SignOff">Salir</a></li>
                                         </ul>
-                                    </li>
-                                    <li class="top-hover">
-                                        <a href="#">$Doller (US) <i class="ion-chevron-down"></i></a>
+                                    </Authorized>
+                                    <NotAuthorized>
                                         <ul>
-                                            <li><a href="#">Taka (BDT)</a></li>
-                                            <li><a href="#">Riyal (SAR)</a></li>
-                                            <li><a href="#">Rupee (INR)</a></li>
-                                            <li><a href="#">Dirham (AED)</a></li>
+                                            <li><a href="login">Login</a></li>
+                                            <li><a href="registro">Registrarse</a></li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img alt="flag" src="assets/img/icon-img/en.jpg"> English  <i class="ion-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/bl.jpg">Bangla </a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/ar.jpg">Arabic</a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/in.jpg">Hindi </a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/sp.jpg">Spanish</a></li>
-                                        </ul>
+                                    </NotAuthorized>
+                                </AuthorizeView>
                                     </li>
                                 </ul>
                             </div>

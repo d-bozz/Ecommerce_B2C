@@ -1,5 +1,6 @@
 ﻿@page "/usuario"
 @page "/usuario/{id:int}"
+@layout _DashboardLayout
 
 @inject IUsuarioService usuarioService;
 @inject IToastService toastService;
@@ -7,41 +8,56 @@
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <p class="col-sm-12 col-md-8 col-xl-10 h4 mt-2">@titulo</p>
-</div>
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-12 col-md-8 col-xl-10">
-        <EditForm Model="modelo" OnValidSubmit="SaveChanges">
-            <DataAnnotationsValidator></DataAnnotationsValidator>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Static Navigation</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Static Navigation</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row justify-content-center  mt-3">
+                    <p class="col-sm-12 col-md-8 col-xl-10 h4 mt-2">@titulo</p>
+                </div>
+                <div class="row justify-content-center  mt-3">
+                    <div class="col-sm-12 col-md-8 col-xl-10">
+                        <EditForm Model="modelo" OnValidSubmit="SaveChanges">
+                            <DataAnnotationsValidator></DataAnnotationsValidator>
 
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Nombre Completo</span>
-                <input type="text" class="form-control" @bind-value="modelo.NombreCompleto">
-                <ValidationMessage For="@(()=>modelo.NombreCompleto)" />
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light" id="basic-addon3">Nombre Completo</span>
+                                <input type="text" class="form-control" @bind-value="modelo.NombreCompleto">
+                                <ValidationMessage For="@(()=>modelo.NombreCompleto)" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light" id="basic-addon3">Correo</span>
+                                <input type="text" class="form-control" @bind-value="modelo.Correo"><br />
+                                <ValidationMessage For="@(()=>modelo.Correo)" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light" id="basic-addon3">Contraseña</span>
+                                <input type="password" class="form-control" @bind-value="modelo.Clave">
+                                <ValidationMessage For="@(()=>modelo.Clave)" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light" id="basic-addon3">Confirmar Contraseña</span>
+                                <input type="password" class="form-control" @bind-value="modelo.ConfirmarClave">
+                                <ValidationMessage For="@(()=>modelo.ConfirmarClave)" />
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary" style="width:130px">@boton</button>
+                                <a href="/usuarios" class="btn btn-secondary" style="width:130px">Volver</a>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Correo</span>
-                <input type="text" class="form-control" @bind-value="modelo.Correo"><br />
-                <ValidationMessage For="@(()=>modelo.Correo)" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Contraseña</span>
-                <input type="password" class="form-control" @bind-value="modelo.Clave">
-                <ValidationMessage For="@(()=>modelo.Clave)" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Confirmar Contraseña</span>
-                <input type="password" class="form-control" @bind-value="modelo.ConfirmarClave">
-                <ValidationMessage For="@(()=>modelo.ConfirmarClave)" />
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary" style="width:130px">@boton</button>
-                <a href="/usuarios" class="btn btn-secondary" style="width:130px">Volver</a>
-            </div>
-        </EditForm>
+        </div>
+        <div style="height: 100vh"></div>
+        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
     </div>
-</div>
+</main>
 
 
 @code {

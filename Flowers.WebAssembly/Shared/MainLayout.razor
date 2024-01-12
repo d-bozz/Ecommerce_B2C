@@ -1,13 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
+<body>
 <header class="header-area clearfix">
     <BlazoredToasts />
     <NavMenu />
 </header>
-<body>
-    <BreadCrumb />
+    <div class="breadcrumb-area gray-bg">
+        <BreadCrumb />
+    </div>
+
         @Body
-</body>
+
 <footer class="footer-area pt-58 gray-bg-3">
     <Footer />
 </footer>
+</body>

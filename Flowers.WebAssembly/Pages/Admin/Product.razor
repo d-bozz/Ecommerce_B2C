@@ -1,5 +1,7 @@
 ﻿@page "/producto"
 @page "/producto/{id:int}"
+@layout _DashboardLayout
+
 
 @inject IProductoService productoService;
 @inject ICategoriaService categoriaService
@@ -8,59 +10,78 @@
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <p class="col-sm-12 col-md-8 col-xl-10 h4 mt-2">@titulo</p>
-</div>
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-12 col-md-8 col-xl-10">
 
-        <EditForm Model="modelo" OnValidSubmit="SaveChanges">
-            <DataAnnotationsValidator></DataAnnotationsValidator>
-            <div class="input-group mb-3">
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Producto</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Producto</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row justify-content-center  mt-3">
+                <p class="col-sm-12 col-md-8 col-xl-10 h4 mt-2">@titulo</p>
+                </div>
+                <div class="row justify-content-center  mt-3">
+                <div class="col-sm-12 col-md-8 col-xl-10">
+
+                <EditForm Model="modelo" OnValidSubmit="SaveChanges">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="input-group mb-3">
                 <span class="input-group-text bg-light" id="basic-addon3">Nombre</span>
                 <input type="text" class="form-control" @bind-value="modelo.Nombre">
                 <ValidationMessage For="@(()=>modelo.Nombre)" />
-            </div>
-            <div class="input-group  mb-3">
+                </div>
+                <div class="input-group  mb-3">
                 <span class="input-group-text bg-light">Descripcion</span>
                 <textarea class="form-control" @bind="modelo.Descripcion"></textarea>
                 <ValidationMessage For="@(()=>modelo.Descripcion)" />
-            </div>
-            <div class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                 <label class="input-group-text bg-light" for="inputGroupSelect01">Categoria</label>
                 <select class="form-select" value="@modelo.IdCategoria" @onchange="CambiarCategoria">
-                    @foreach (var item in listaCategoria)
-                    {
-                        <option value="@item.IdCategoria">@item.Nombre</option>
-                    }
+                @foreach (var item in listaCategoria)
+                {
+                <option value="@item.IdCategoria">@item.Nombre</option>
+                }
                 </select>
-            </div>
-            <div class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                 <span class="input-group-text bg-light" id="basic-addon3">Precio</span>
                 <input type="number" class="form-control" @bind-value="modelo.Precio">
                 <ValidationMessage For="@(()=>modelo.Precio)" />
-            </div>
-            <div class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                 <span class="input-group-text bg-light" id="basic-addon3">Precio Oferta</span>
                 <input type="number" class="form-control" @bind-value="modelo.PrecioOferta">
                 <ValidationMessage For="@(()=>modelo.PrecioOferta)" />
-            </div>
-            <div class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                 <span class="input-group-text bg-light" id="basic-addon3">Cantidad</span>
                 <input type="number" class="form-control" @bind-value="modelo.Cantidad">
                 <ValidationMessage For="@(()=>modelo.Cantidad)" />
-            </div>
-            <div class="input-group mb-3">
+                </div>
+                <div class="input-group mb-3">
                 <label class="input-group-text bg-light">Imagen</label>
                 <InputFile type="file" class="form-control" accept="image/png, image/gif, image/jpeg" OnChange="OnFileChange"></InputFile>
-            </div>
-            <div class="mb-3">
+                </div>
+                <div class="mb-3">
                 <button type="submit" class="btn btn-primary" style="width:130px">@boton</button>
                 <a href="/productos" class="btn btn-secondary" style="width:130px">Volver</a>
+                </div>
+                </EditForm>
+                </div>
+                </div>
             </div>
-        </EditForm>
+        </div>
+        <div style="height: 100vh"></div>
+        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
     </div>
-</div>
+</main>
+
+
+
 
 @code {
     [Parameter] public int Id { get; set; }
