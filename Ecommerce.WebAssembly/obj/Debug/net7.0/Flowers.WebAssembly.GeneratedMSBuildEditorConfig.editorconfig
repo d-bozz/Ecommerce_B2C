@@ -1,0 +1,151 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Flowers.WebAssembly
+build_property.RootNamespace = Flowers.WebAssembly
+build_property.ProjectDir = C:\Damian\Flowers_B2C\Flowers.WebAssembly\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Damian\Flowers_B2C\Flowers.WebAssembly
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Categories.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcmllcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Category.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Product.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/User.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Admin/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Autorization/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0b3JpemF0aW9uXExvZ2luLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Autorization/PasswordRecovery.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0b3JpemF0aW9uXFBhc3N3b3JkUmVjb3ZlcnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Autorization/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0b3JpemF0aW9uXFJlZ2lzdGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Autorization/ResetPassword.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0b3JpemF0aW9uXFJlc2V0UGFzc3dvcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/About.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xBYm91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Blog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xCbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Contact.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xDb250YWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Perfil.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xQZXJmaWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Preguntas.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xQcmVndW50YXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Clients/Terminos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xUZXJtaW5vcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Cart.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcQ2FydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Catalogue.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcQ2F0YWxvZ3VlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Checkout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcQ2hlY2tvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Detail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcRGV0YWlsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Pages/Store/Wishlist.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcV2lzaGxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/BreadCrumb.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEJyZWFkQ3J1bWIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/Footer.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvb3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/Shared/_DashboardLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXF9EYXNoYm9hcmRMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Damian/Flowers_B2C/Flowers.WebAssembly/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,10 +1,10 @@
-# Flowers_B2C
+# Ecommerce_B2C
 
-**Flowers_B2C** es un sistema de comercio electrónico B2C especializado en la venta de flores. Esta aplicación web está desarrollada en C# y utiliza una base de datos SQL Server para gestionar la información relacionada con productos, pedidos y clientes.
+**Flowers_B2C** es un sistema de comercio electrónico B2C generico especializado en la venta de productos online. Esta aplicación web está desarrollada en C# y utiliza una base de datos SQL Server para gestionar la información relacionada con productos, pedidos y clientes.
 
 ## Características Principales
 
-- Catálogo de Flores: Explora una amplia variedad de flores disponibles para la compra, cada una con detalles como descripción, precio y disponibilidad.
+- Catálogo de productos: Explora una amplia variedad de productos disponibles para la compra, cada una con detalles como descripción, precio y disponibilidad.
 - Carrito de Compras: Agrega productos al carrito, ajusta las cantidades y realiza una fácil confirmación de compra.
 - Proceso de Pago: Utiliza un sistema seguro y fácil de usar para procesar pagos en línea.
 - Gestión de Pedidos: Realiza un seguimiento de los pedidos, desde la confirmación hasta la entrega, con información detallada en tiempo real.
@@ -21,4 +21,4 @@
 1. Clona el repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/d-bozz/Flowers_B2C.git
+   git clone https://github.com/d-bozz/Ecommerce_B2C.git

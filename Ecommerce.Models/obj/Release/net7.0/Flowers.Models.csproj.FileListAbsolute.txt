@@ -1,0 +1,15 @@
+C:\Damian\Flowers_B2C\Flowers.Models\bin\Release\net7.0\Flowers.Models.deps.json
+C:\Damian\Flowers_B2C\Flowers.Models\bin\Release\net7.0\Flowers.Models.runtimeconfig.json
+C:\Damian\Flowers_B2C\Flowers.Models\bin\Release\net7.0\Flowers.Models.dll
+C:\Damian\Flowers_B2C\Flowers.Models\bin\Release\net7.0\Flowers.Models.pdb
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.csproj.AssemblyReference.cache
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.AssemblyInfoInputs.cache
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.AssemblyInfo.cs
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.csproj.CoreCompileInputs.cache
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.sourcelink.json
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.dll
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\refint\Flowers.Models.dll
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.pdb
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\Flowers.Models.genruntimeconfig.cache
+C:\Damian\Flowers_B2C\Flowers.Models\obj\Release\net7.0\ref\Flowers.Models.dll

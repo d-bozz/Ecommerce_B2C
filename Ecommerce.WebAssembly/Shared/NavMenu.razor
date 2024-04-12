@@ -1,0 +1,475 @@
+﻿@inject ICarritoService carritoService;
+@implements IDisposable
+
+@inject SweetAlertService swal;
+@inject NavigationManager navManager;
+@using Ecommerce.WebAssembly.Extensions;
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Security.Claims;
+@inject AuthenticationStateProvider authenticationProvider;
+
+
+
+    <!-- header start -->
+        <div class="header-top">
+            <div class="container">
+                <div class="border-bottom-1">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="welcome-area">
+                            <AuthorizeView>
+                                        <Authorized>
+                                            <p>Bienvenido - @context.User.Claims.Where(c => c.Type == ClaimTypes.Email).Select(c => c.Value).SingleOrDefault()</p>
+                                        </Authorized>
+                                        <NotAuthorized>
+                                            <p><a href="login">Iniciar sesión</a></p>
+                                        </NotAuthorized>
+                                </AuthorizeView>                            
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-12">
+                            <div class="account-curr-lang-wrap f-right">
+                                <ul>
+                                    <li class="top-hover">
+                                        <a href="#">Mi cuenta<i class="ion-chevron-down"></i></a>
+                                <AuthorizeView>
+                                    <Authorized>
+                                        <ul>
+                                            <li><a href="wishlist">Wishlist  </a></li>
+                                            <li><a href="perfil/@GetCurrentUserId(context.User)">Perfil</a></li>
+                                            <li><a @onclick="SignOff">Salir</a></li>
+                                        </ul>
+                                    </Authorized>
+                                    <NotAuthorized>
+                                        <ul>
+                                            <li><a href="login">Login</a></li>
+                                            <li><a href="registro">Registrarse</a></li>
+                                        </ul>
+                                    </NotAuthorized>
+                                </AuthorizeView>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom transparent-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="logo">
+                            <a href="inicio">
+                                <img alt="" src="assets/img/logo/logo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-6">
+                        <div class="header-bottom-right">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li class="top-hover">
+                                            <a href="inicio">inicio</a>
+                                        </li>
+                                        <li><a href="nosotros">nosotros</a></li>
+                                        <li class="mega-menu-position top-hover">
+                                            <a href="catalogo">catalogo</a>
+                                            <ul class="mega-menu">
+                                                <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">Categories 01</li>
+                                                        <li><a href="catalogo">Aconite</a></li>
+                                                        <li><a href="catalogo">Ageratum</a></li>
+                                                        <li><a href="catalogo">Allium</a></li>
+                                                        <li><a href="catalogo">Anemone</a></li>
+                                                        <li><a href="catalogo">Angelica</a></li>
+                                                        <li><a href="catalogo">Angelonia</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">Categories 02</li>
+                                                        <li><a href="catalogo">Balsam</a></li>
+                                                        <li><a href="catalogo">Baneberry</a></li>
+                                                        <li><a href="catalogo">Bee Balm</a></li>
+                                                        <li><a href="catalogo">Begonia</a></li>
+                                                        <li><a href="catalogo">Bellflower</a></li>
+                                                        <li><a href="catalogo">Bergenia</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">Categories 03</li>
+                                                        <li><a href="catalogo">Caladium</a></li>
+                                                        <li><a href="catalogo">Calendula</a></li>
+                                                        <li><a href="catalogo">Carnation</a></li>
+                                                        <li><a href="catalogo">Catmint</a></li>
+                                                        <li><a href="catalogo">Celosia</a></li>
+                                                        <li><a href="catalogo">Chives</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">Categories 04</li>
+                                                        <li><a href="catalogo">Daffodil</a></li>
+                                                        <li><a href="catalogo">Dahlia</a></li>
+                                                        <li><a href="catalogo">Daisy</a></li>
+                                                        <li><a href="catalogo">Diascia</a></li>
+                                                        <li><a href="catalogo">Dusty Miller</a></li>
+                                                        <li><a href="catalogo">Dame’s Rocket</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="top-hover">
+                                            <a href="blog">blog</a>
+                                        </li>
+                                        <li><a href="contacto">contacto</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-cart">
+                                <a href="cart">
+                                    <div class="cart-icon">
+                                        <i class="ion-bag"></i>
+                                        <span class="count-style">@ShowQuantityCarrito()</span>
+                                    </div>
+                                    <div class="cart-text">
+                                        <span class="digit">Carrito</span>
+                                        <span>$@ShowTotalCarrito()</span>
+                                    </div>
+                                </a>
+                                <div class="shopping-cart-content">
+                                    <ul>
+                                        @if (lista.Any())
+                                        {
+                                            foreach (var item in lista)
+                                            {
+                                                <li class="single-shopping-cart">
+                                                    <div class="shopping-cart-img">
+                                                        <a href="@item.Producto.IdProducto"><img alt="" src="@item.Producto.Imagen" width="82" height="82"></a>
+                                                    </div>
+                                                    <div class="shopping-cart-title">
+                                                        <h4><a href="@item.Producto.IdProducto">@item.Producto.Nombre</a></h4>
+                                                        <h6>Qty: @item.Cantidad</h6>
+                                                        <span>$@item.Total</span>
+                                                    </div>
+                                                    <div class="shopping-cart-delete">
+                                                    <a type="button" @onclick="(async () => await Eliminar(item.Producto.IdProducto))">
+                                                        <i class="ion ion-close"></i>
+                                                    </a>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                    <div class="shopping-cart-total">
+                                        <h4>Envío: <span>$@envio</span></h4>
+                                        <h4>Total: <span class="shop-total">$@ShowTotalEnvio()</span></h4>
+                                    </div>
+                                    <div class="shopping-cart-btn">
+                                        <a href="cart">Ver carrito</a>
+                                        <a href="checkout">checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu-area">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul class="menu-overflow">
+                                <li>
+                                    <a href="#">HOME</a>
+                                    <ul>
+                                        <li><a href="inicio">home version 1</a></li>
+                                        <li><a href="index-2.html">home version 2</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">pages</a>
+                                    <ul>
+                                        <li><a href="nosotros">about us </a></li>
+                                        <li><a href="catalogo">shop Grid</a></li>
+                                        <li><a href="shop-list.html">shop list</a></li>
+                                        <li><a href="product-details.html">product details</a></li>
+                                        <li><a href="cart-page.html">cart page</a></li>
+                                        <li><a href="checkout.html">checkout</a></li>
+                                        <li><a href="wishlist.html">wishlist</a></li>
+                                        <li><a href="my-account.html">my account</a></li>
+                                        <li><a href="login-register.html">login / register</a></li>
+                                        <li><a href="contacto">contacto</a></li>
+                                        <li><a href="testimonial.html">Testimonials</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="catalogo"> Shop </a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Categories 01</a>
+                                            <ul>
+                                                <li><a href="catalogo">Aconite</a></li>
+                                                <li><a href="catalogo">Ageratum</a></li>
+                                                <li><a href="catalogo">Allium</a></li>
+                                                <li><a href="catalogo">Anemone</a></li>
+                                                <li><a href="catalogo">Angelica</a></li>
+                                                <li><a href="catalogo">Angelonia</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Categories 02</a>
+                                            <ul>
+                                                <li><a href="catalogo">Balsam</a></li>
+                                                <li><a href="catalogo">Baneberry</a></li>
+                                                <li><a href="catalogo">Bee Balm</a></li>
+                                                <li><a href="catalogo">Begonia</a></li>
+                                                <li><a href="catalogo">Bellflower</a></li>
+                                                <li><a href="catalogo">Bergenia</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Categories 03</a>
+                                            <ul>
+                                                <li><a href="catalogo">Caladium</a></li>
+                                                <li><a href="catalogo">Calendula</a></li>
+                                                <li><a href="catalogo">Carnation</a></li>
+                                                <li><a href="catalogo">Catmint</a></li>
+                                                <li><a href="catalogo">Celosia</a></li>
+                                                <li><a href="catalogo">Chives</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Categories 04</a>
+                                            <ul>
+                                                <li><a href="catalogo">Daffodil</a></li>
+                                                <li><a href="catalogo">Dahlia</a></li>
+                                                <li><a href="catalogo">Daisy</a></li>
+                                                <li><a href="catalogo">Diascia</a></li>
+                                                <li><a href="catalogo">Dusty Miller</a></li>
+                                                <li><a href="catalogo">Dame’s Rocket</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">BLOG</a>
+                                    <ul>
+                                        <li><a href="blog-masonry.html">Blog Masonry</a></li>
+                                        <li>
+                                            <a href="#">Blog Standard</a>
+                                            <ul>
+                                                <li><a href="blog-left-sidebar.html">left sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">right sidebar</a></li>
+                                                <li><a href="blog-no-sidebar.html">no sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Post Types</a>
+                                            <ul>
+                                                <li><a href="blog-details-standerd.html">Standard post</a></li>
+                                                <li><a href="blog-details-audio.html">audio post</a></li>
+                                                <li><a href="blog-details-video.html">video post</a></li>
+                                                <li><a href="blog-details-gallery.html">gallery post</a></li>
+                                                <li><a href="blog-details-link.html">link post</a></li>
+                                                <li><a href="blog-details-quote.html">quote post</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="contacto"> Contact us </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+@*    <div class="main-navbar shadow-sm sticky-top">
+        <div class="top-navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                        <h5 class="brand-name">REYNANTE</h5>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <form role="search">
+                            <div class="input-group">
+                                <input type="search" placeholder="Estoy buscando..." class="form-control" />
+                                <button class="btn bg-white" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <ul class="nav justify-content-end">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart">
+                                    <i class="ri-shopping-cart-2-line"></i> Carrito
+                                    <span class="badge bg-danger text-white ms-1 rounded-pill">@ShowQuantityCarrito()</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="wishlist">
+                                    <i class="ri-heart-line"></i> Wishlist (0)
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ri-user-line"></i>
+                                    <AuthorizeView>
+                                        <Authorized>
+                                            @context.User.Claims.Where(c => c.Type == ClaimTypes.Email).Select(c => c.Value).SingleOrDefault()
+                                        </Authorized>
+                                        <NotAuthorized>
+                                            Iniciar sesión
+                                        </NotAuthorized>
+                                    </AuthorizeView>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <AuthorizeView>
+                                        <Authorized>
+                                            <li><a class="dropdown-item" href="perfil/@GetCurrentUserId(context.User)"><i class="fa fa-user"></i> Mi cuenta</a></li>
+                                            <li><a class="dropdown-item" href="historial"><i class="fa fa-list"></i> Mis órdenes</a></li>
+                                            <li><a class="dropdown-item" href="wishlist"><i class="fa fa-heart"></i> Mi lista de deseos</a></li>
+                                            <li><a class="dropdown-item" href="cart"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+                                            <li><button class="dropdown-item" @onclick="SignOff"><i class="fa fa-sign-out"></i> Cerrar sesión</button></li>
+                                        </Authorized>
+                                        <NotAuthorized>
+                                            <li><a class="dropdown-item" href="login"><i class="fa fa-sign-in"></i> Iniciar sesión</a></li>
+                                            <li><a class="dropdown-item" href="registro"><i class="fa fa-user-plus"></i> Registrarse</a></li>
+                                        </NotAuthorized>
+                                    </AuthorizeView>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="inicio">
+                    REYNANTE
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="inicio">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nosotros">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="preguntas">Preguntas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto">Contacto</a>
+                        </li>
+                        <AuthorizeView Roles="Administrador">
+                            <li class="nav-item">
+                                <a class="nav-link" href="dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="usuarios">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="categorias">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="productos">Productos</a>
+                            </li>
+                        </AuthorizeView>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+*@
+
+@code {
+    private bool collapseNavMenu = true;
+    private List<CarritoDTO> lista = new List<CarritoDTO>();
+    private int envio = 500;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        lista = await carritoService.ReturnCarrito();
+        carritoService.ShowItems += StateHasChanged;    
+    }
+
+    public void Dispose()
+    {
+        carritoService.ShowItems -= StateHasChanged;
+    }
+
+    private int ShowQuantityCarrito()
+    {
+        return carritoService.QuantityProducts();
+    }
+
+    private decimal ShowTotalCarrito()
+    {
+        return carritoService.TotalProducts();
+    }
+
+    private decimal ShowTotalEnvio()
+    {
+        return ShowTotalCarrito() + envio;
+    }
+
+    private async Task Eliminar(int idProducto)
+    {
+        CarritoDTO producto = lista.First(i => i.Producto.IdProducto == idProducto);
+
+        if (producto != null)
+        {
+            lista.Remove(producto);
+            await carritoService.RemoveCarrito(idProducto);
+        }
+    }
+
+    private async Task SignOff()
+    {
+        SweetAlertResult result = await swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Desea salir?",
+                Icon = SweetAlertIcon.Info,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Si",
+                CancelButtonText = "No"
+            });
+
+        if (result.IsConfirmed)
+        {
+            var autenticacionExt = (AuthenticationExtension)authenticationProvider;
+            await autenticacionExt.UpdateAuthenticationState(null);
+            navManager.NavigateTo("/", true);
+        }
+    }
+
+    private string GetCurrentUserId(ClaimsPrincipal user)
+    {
+        var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return userId;
+    }
+}

@@ -1,0 +1,12 @@
+C:\Damian\Flowers_B2C\Flowers.DTO\bin\Release\net7.0\Flowers.DTO.deps.json
+C:\Damian\Flowers_B2C\Flowers.DTO\bin\Release\net7.0\Flowers.DTO.dll
+C:\Damian\Flowers_B2C\Flowers.DTO\bin\Release\net7.0\Flowers.DTO.pdb
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.AssemblyInfoInputs.cache
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.AssemblyInfo.cs
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.csproj.CoreCompileInputs.cache
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.sourcelink.json
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.dll
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\refint\Flowers.DTO.dll
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\Flowers.DTO.pdb
+C:\Damian\Flowers_B2C\Flowers.DTO\obj\Release\net7.0\ref\Flowers.DTO.dll
