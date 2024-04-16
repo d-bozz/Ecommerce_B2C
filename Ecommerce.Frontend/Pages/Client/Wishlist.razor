@@ -9,74 +9,67 @@
 @inject AuthenticationStateProvider authenticationStateProvider;
 
 
+@using Ecommerce.Frontend.Shared
 @using Microsoft.AspNetCore.Components.Authorization;
 @using System.Security.Claims;
 
-<div class="row">
-    <!-- Productos en la whishlist -->
-    <div class="col-sm-8">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-sm bg-light table-bordered">
-                        <thead class="table-dark">
-                            <tr class="text-center">
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
-                                <th>Agregar al Carrito</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (lista.Any())
+<head>
+    <title>wishlist page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<BreadCrumb BreadcrumbItems="@breadcrumbItems" />
+
+<div class="cart-area table-area pt-110 pb-95 float-left w-100">
+    <div class="container">
+        <div class=" cart-wrapper float-left w-100">
+            <div class="table-responsive">
+                <table class="table product-table text-center">
+                    <thead>
+                        <tr>
+                            <th class="table-remove text-uppercase">Eliminar</th>
+                            <th class="table-image text-uppercase">Imagen</th>
+                            <th class="table-p-name text-uppercase">Producto</th>
+                            <th class="table-p-price text-uppercase">Precio</th>
+                            <th class="table-p-qty text-uppercase">Stock</th>
+                            <th class="table-total text-uppercase">Agregar al carrito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (lista.Any())
+                        {
+                            foreach (var item in lista)
                             {
-                                foreach (var item in lista)
-                                {
-                                    if (item != null && item.Producto != null)
-                                    {
-                                        <tr class="text-center">
-                                            <!-- Agregar la clase text-center aquí -->
-                                            <td valign="middle">
-                                                <img class="card-img-top" src="@item.Producto.Imagen" style="width:100px">
-                                            </td>
-                                            <td valign="middle">
-                                                <a href="detalle/@item.IdProducto">
-                                                    @item.Producto.Nombre
-                                                </a>
-                                            </td>
-                                            <td valign="middle">$@item.Producto.Precio</td>
-                                            <td valign="middle">En Stock</td>
-                                            <td valign="middle">
-                                                <button type="button" class="btn btn-outline-dark" @onclick="(async () => await AgregarCarrito(item.IdProducto))">
-                                                    <i class="bi bi-cart-plus"></i>
-                                                    Agregar al carrito
-                                                </button>
-                                            </td>
-                                            <td valign="middle">
-                                                <button type="button" class="btn btn-outline-dark" @onclick="(async () => await Eliminar(item.IdProducto))">
-                                                    <i class="oi oi-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <!-- Agregar la clase text-center aquí -->
-                                    <td colspan="6">
-                                        <div class="alert alert-warning" role="alert">
-                                            No hay productos en la lista de deseos
-                                        </div>
-                                    </td>
+                                <tr>
+                                    <td class="table-remove"><button><i class="material-icons" @onclick="(async () => await Eliminar(item.IdProducto))">delete</i></button></td>
+                                    <td class="table-image"><a href="detail/@item.Producto.IdProducto"><img src="@item.Producto.Imagen" alt=""></a></td>
+                                    <td class="table-p-name text-capitalize"><a href="@item.Producto.IdProducto">@item.Producto.Nombre</a></td>
+                                    <td class="table-p-price"><p>$@item.Producto.PrecioOferta</p></td>
+                                    <td class="table-p-qty">in stock</td>
+                                    <td class="table-addtocart"><a href="cart_page.html" class="btn-primary btn" @onclick="(async () => await AgregarCarrito(item.IdProducto))">Add to cart</a></td>
                                 </tr>
                             }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                        else
+                        {
+                            <tr class="text-center">
+                                <td colspan="6">
+                                    <div class="alert alert-warning" role="alert">
+                                        No hay productos en la lista de deseos
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -86,6 +79,7 @@
 @code {
     private List<WishlistDTO> lista = new List<WishlistDTO>();
     private ProductoDTO producto;
+    private List<BreadCrumb.BreadcrumbItem> breadcrumbItems;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
@@ -106,6 +100,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        breadcrumbItems = new List<BreadCrumb.BreadcrumbItem>
+        {
+            new BreadCrumb.BreadcrumbItem { Text = "Home", Url = "/" },
+            new BreadCrumb.BreadcrumbItem { Text = "Wishlist", Url = "/wishlist" }
+        };
+
         var autenticacionState = await authenticationStateProvider.GetAuthenticationStateAsync();
         var usuarioLogueado = autenticacionState.User;
 

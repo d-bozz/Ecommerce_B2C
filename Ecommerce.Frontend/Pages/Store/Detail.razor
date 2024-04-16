@@ -1,13 +1,27 @@
 ﻿@page "/detail/{id:int}"
 @using Ecommerce.DTO
 @using Ecommerce.Frontend.Services.Contrat
+@using Ecommerce.Frontend.Shared
 
 @inject IProductoService productoServicio;
 @inject ICarritoService carritoServicio
 
+<head>
+    <title>wishlist page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<BreadCrumb BreadcrumbItems="@breadcrumbItems" />
+
 <div class="container px-4 px-lg-5 my-5">
-
-
     @if (modelo != null)
     {
         <div class="row gx-4 gx-lg-5 align-items-center">
@@ -48,15 +62,22 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     }
-
-
-
 </div>
 
 @code {
     [Parameter] public int Id { get; set; }
     private ProductoDTO? modelo = null;
     private int cantidad = 1;
+    private List<BreadCrumb.BreadcrumbItem> breadcrumbItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        breadcrumbItems = new List<BreadCrumb.BreadcrumbItem>
+        {
+            new BreadCrumb.BreadcrumbItem { Text = "Home", Url = "/" },
+            new BreadCrumb.BreadcrumbItem { Text = "Detail", Url = $"/detail/{Id}" }
+        };
+    }
 
     protected override async Task OnParametersSetAsync()
     {

@@ -82,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmVcRGV0YWlsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Damian/Ecommerce_B2C/Ecommerce.Frontend/Shared/BreadCrumb.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEJyZWFkQ3J1bWIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Damian/Ecommerce_B2C/Ecommerce.Frontend/Shared/LoginLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
