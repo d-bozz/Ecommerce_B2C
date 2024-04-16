@@ -1,0 +1,164 @@
+﻿@page "/cart"
+
+@inject ICarritoService carritoServicio
+@inject IVentaService ventaServicio
+@inject IToastService toastService
+@inject NavigationManager _navServicio
+
+@using Ecommerce.DTO
+@using Ecommerce.Frontend.Services.Contrat
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Components.Forms
+
+<head>
+    <title>cart page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<div class="cart-area table-area pt-110 pb-95 float-left w-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 float-left cart-wrapper">
+                <div class="table-responsive">
+                    <table class="table product-table text-center">
+                        <thead>
+                            <tr>
+                                <th class="table-remove text-capitalize">Eliminar</th>
+                                <th class="table-image text-capitalize">Imagen</th>
+                                <th class="table-p-name text-capitalize">Producto</th>
+                                <th class="table-p-price text-capitalize">Precio</th>
+                                <th class="table-p-qty text-capitalize">Cantidad</th>
+                                <th class="table-total text-capitalize">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (lista.Any())
+                            {
+                                foreach (var item in lista)
+                                {
+                                    <tr>
+                                        <td class="table-remove" @onclick="(async () => await Eliminar(item.Producto.IdProducto))"><button><i class="material-icons">delete</i></button></td>
+                                        <td class="table-image"><a href="detail/@item.Producto.IdProducto"><img src="@item.Producto.Imagen" alt=""></a></td>
+                                        <td class="table-p-name text-capitalize"><a href="detail/@item.Producto.IdProducto">@item.Producto.Nombre</a></td>
+                                        <td class="table-p-price"><p>$@item.Producto.PrecioOferta</p></td>
+                                        <td class="table-p-qty">
+                                            <input value="@item.Cantidad" @oninput="(e => ActualizarCantidad(item, e))" name="cart-qty" min="1" type="number">
+                                        </td>
+                                        <td class="table-total"><p>$@(item.Producto.PrecioOferta * item.Cantidad)</p></td>
+                                    </tr>
+                                }
+
+                            }
+                            else
+                            {
+                                <tr class="text-center">
+                                    <td colspan="6">
+                                        <div class="alert alert-warning" role="alert">
+                                            No hay productos en el carrito de compras
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-bottom-wrapper">
+                    <div class="table-coupon d-flex d-xs-block d-lg-flex d-sm-flex fix justify-content-start float-left">
+                        <input type="text" placeholder="Código del cupon">
+                        <button type="submit" class="btn-primary btn">Aplicar cupon</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left  align-items-center">
+                <div class="table-total-content">
+                    <h2 class="pb-20">Cart totals</h2>
+                    <div class="table-total-amount">
+                        <div class="single-total-content d-flex justify-content-between float-left w-100">
+                            <strong>Subtotal</strong>
+                            <span class="c-total-price">$@subtotal</span>
+                        </div>
+                        <div class="single-total-content d-flex justify-content-between float-left w-100">
+                            <strong>Envío</strong>
+                            <span class="c-total-price"><span>DAC:</span> $@shipping</span>
+                        </div>
+                        <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+                            <strong>Total</strong>
+                            <span class="c-total-price">$@CalculateTotal()</span>
+                        </div>
+                        <a href="checkout" class="btn btn-primary float-left w-100 text-center">Proceder al checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private bool disabled = true;
+    private List<CarritoDTO> lista = new List<CarritoDTO>();
+    private decimal? subtotal = 0;
+    private decimal? shipping = 350;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        lista = await carritoServicio.ReturnCarrito();
+
+        var authState = await authenticationState;
+
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            disabled = false;
+        }
+
+        CalculateSubtotal();
+        CalculateTotal();
+    }
+
+    private void ActualizarCantidad(CarritoDTO item, ChangeEventArgs e)
+    {
+        int nuevaCantidad = Convert.ToInt32(e.Value);
+        if (nuevaCantidad >= 1)
+        {
+            item.Cantidad = nuevaCantidad;
+            item.Total = item.Producto.PrecioOferta * nuevaCantidad;
+            CalculateSubtotal();
+            CalculateTotal();
+        }
+    }
+
+    private async Task Eliminar(int idProducto)
+    {
+        CarritoDTO producto = lista.First(i => i.Producto.IdProducto == idProducto);
+
+        if (producto != null)
+        {
+            lista.Remove(producto);
+            await carritoServicio.RemoveCarrito(idProducto);
+            CalculateSubtotal();
+            CalculateTotal();
+        }
+    }
+
+    private void CalculateSubtotal()
+    {
+        subtotal = lista.Sum(item => item.Producto.PrecioOferta * item.Cantidad);
+    }
+
+    private decimal? CalculateTotal()
+    {
+        return subtotal + shipping;
+    }
+}

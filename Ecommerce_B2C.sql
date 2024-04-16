@@ -3,14 +3,14 @@
 /*****************************           Creacion de la base de datos             *******************************************/
 /****************************************************************************************************************************/
 
-IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Ecommerce_B2C')
-BEGIN
-    CREATE DATABASE Ecommerce_B2C;
-END
-GO
+--IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'Ecommerce_B2C')
+--BEGIN
+--    CREATE DATABASE Ecommerce_B2C;
+--END
+--GO
 
-USE Ecommerce_B2C;
-GO
+--USE Ecommerce_B2C;
+--GO
 
 /****************************************************************************************************************************/
 /*********************************           Creacion de las tablas             *********************************************/

@@ -1,0 +1,101 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\obj\\Debug\\net7.0\\compressed\\o0n3ngx6n5.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Ecommerce.Frontend.styles.css",
+      "PackagePath": "staticwebassets\\Ecommerce.Frontend.styles.css"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\FONT-LICENSE.txt",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\FONT-LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\ICON-LICENSE.txt",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\ICON-LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\README.md"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\css\\styles.css.map",
+      "PackagePath": "staticwebassets\\css\\styles.css.map"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Damian\\Ecommerce_B2C\\Ecommerce.Frontend\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Ecommerce.Frontend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Ecommerce.Frontend.props",
+      "PackagePath": "build\\Ecommerce.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Ecommerce.Frontend.props",
+      "PackagePath": "buildMultiTargeting\\Ecommerce.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Ecommerce.Frontend.props",
+      "PackagePath": "buildTransitive\\Ecommerce.Frontend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
