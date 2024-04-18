@@ -3,69 +3,71 @@
 @inject ICategoriaService categoriaService;
 @inject IToastService toastService;
 @inject SweetAlertService Swal;
+@inject NavigationManager _navService;
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
-        <div class="d-grid gap-1 col-12 mx-auto">
-            <a class="btn btn-primary" href="/category">Nueva Categoria</a>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar categoria..." @bind-value="buscar">
-            <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await ObtenerCategorias(buscar))">
-                <i class="oi oi-magnifying-glass"></i>
-            </button>
-        </div>
-    </div>
-</div>
+<body id="page-top">
+    <div id="wrapper">
 
-<div class="row gx-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-2">
+        <Ecommerce.Frontend.Shared.AdminLateralMenu />
 
-    @if (lista != null)
-    {
-        foreach (var item in lista)
-        {
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <div class="text-center">
-                                <i class="oi oi-folder" style="font-size:50px"></i>
-                            </div>
-                            <div class="text-start">
-                                <p class="m-1"><b>Nombre:</b>@item.Nombre</p>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <Ecommerce.Frontend.Shared.AdminNavMenu />
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Categorias</h1>
+                    <p class="mb-4">
+                        Desde aquí puede realizar la administración de categorias.
+                    </p>
+
+                    <!-- Create & Search -->
+                    <div class="row justify-content-center  mt-3">
+                        <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
+                            <RadzenButton Click="@(() => GoToCreateCategory())" Text="Nueva categoria" Icon="add" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Medium" />
+                        </div>
+
+                        <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Buscar categoria..." @bind-value="buscar">
+                                <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await ObtenerCategorias(buscar))">
+                                    <i class="oi oi-magnifying-glass"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-transparent">
-                        <div class="row justify-content-between">
-                            <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/category/@item.IdCategoria"><i class="oi oi-pencil fs-5"></i></a>
-                            <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Eliminar(item))">
-                                <i class="oi oi-trash fs-5"></i>
-                            </button>
-                        </div>
-                    </div>
+
+                    <!-- Categories Table -->
+                    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                                    Data="@categories" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@selectedCategories>
+                        <Columns>
+                            <RadzenDataGridColumn TItem="CategoriaDTO" Property="IdCategoria" Filterable="false" Title="# Id" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+                            <RadzenDataGridColumn TItem="CategoriaDTO" Property="Nombre" Title="Nombre" Frozen="true" Width="150px" />
+                            <RadzenDataGridColumn TItem="CategoriaDTO" Title="Acción" Width="150px">
+                                <Template Context="context">
+                                    <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/category/@context.IdCategoria"><i class="oi oi-pencil fs-5"></i></a>
+                                    <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Eliminar(context))">
+                                        <i class="oi oi-trash fs-5"></i>
+                                    </button>
+                                </Template>
+                            </RadzenDataGridColumn>
+                        </Columns>
+                    </RadzenDataGrid>
                 </div>
             </div>
-        }
-    }
-    else
-    {
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
         </div>
-    }
+    </div>
+</body>
 
 
-
-
-</div>
 @code {
-    private List<CategoriaDTO>? lista = null;
     private string buscar = "";
+    IEnumerable<CategoriaDTO> categories;
+    IList<CategoriaDTO> selectedCategories;
 
     private async Task ObtenerCategorias(string Valor = "")
     {
@@ -73,18 +75,18 @@
 
         if (response.IsCorrect)
         {
-            lista = (List<CategoriaDTO>)response.Result!;
+            categories = (List<CategoriaDTO>)response.Result!;
         }
         else
         {
-            lista = new List<CategoriaDTO>();
+            categories = new List<CategoriaDTO>();
         }
     }
-
 
     protected override async Task OnInitializedAsync()
     {
         await ObtenerCategorias();
+        selectedCategories = new List<CategoriaDTO>() { categories.FirstOrDefault() };
     }
 
     private async Task Eliminar(CategoriaDTO modelo)
@@ -112,5 +114,10 @@
             else
                 toastService.ShowSuccess(response.Message!);
         }
+    }
+
+    private async Task GoToCreateCategory()
+    {
+        _navService.NavigateTo("/category");
     }
 }

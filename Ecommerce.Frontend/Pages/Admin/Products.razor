@@ -4,84 +4,81 @@
 @inject IToastService toastService;
 @inject NavigationManager _navService;
 @inject SweetAlertService Swal;
+@inject NavigationManager _navService;
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
-        <div class="d-grid gap-1 col-12 mx-auto">
-            <a class="btn btn-primary" href="/product">Nuevo producto</a>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar producto..." @bind-value="buscar">
-            <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await GetProductos(buscar))">
-                <i class="oi oi-magnifying-glass"></i>
-            </button>
-        </div>
-    </div>
-</div>
+<body id="page-top">
+    <div id="wrapper">
 
-<div class="row gx-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-2">
+        <Ecommerce.Frontend.Shared.AdminLateralMenu />
 
-    @if (lista != null)
-    {
-        foreach (var item in lista)
-        {
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    @if (DateTime.Now < item.FechaCreacion.Value.AddDays(30))
-                    {
-                        <div class="badge bg-primary text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nuevo</div>
-                    }
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
 
-                    <!-- Product image-->
-                    <img class="card-img-top border-dark border-1" src="@item.Imagen">
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">@item.Nombre</h5>
-                            <!-- Product price-->
-                            @if (item.PrecioOferta != 0 && item.PrecioOferta < item.Precio)
-                            {
-                                <span class="text-danger text-decoration-line-through">$ @item.Precio</span>
-                                <span>$ @item.PrecioOferta</span>
-                            }
-                            else
-                            {
-                                <span>$ @item.Precio</span>
-                            }
+                <Ecommerce.Frontend.Shared.AdminNavMenu />
 
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Productos</h1>
+                    <p class="mb-4">
+                        Desde aquí puede realizar la administración de productos.
+                    </p>
+
+                    <!-- Create & Search -->
+                    <div class="row justify-content-center  mt-3">
+                        <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
+                            <RadzenButton Click="@(() => GoToCreateProduct())" Text="Nuevo producto" Icon="add" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Medium" />
+                        </div>
+
+                        <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Buscar producto..." @bind-value="buscar">
+                                <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await GetProductos(buscar))">
+                                    <i class="oi oi-magnifying-glass"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer bg-transparent">
-                        <div class="row justify-content-between">
-                            <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/product/@item.IdProducto"><i class="oi oi-pencil fs-5"></i></a>
-                            <button class="col-5 btn btn-sm btn-outline-danger mt-auto" @onclick="(async () => await Eliminar(item))">
-                                <i class="oi oi-trash fs-5"></i>
-                            </button>
-                        </div>
-                    </div>
+
+                    <!-- Products Table -->
+                    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                                    Data="@productos" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@selectedProductos>
+                        <Columns>
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="IdProducto" Filterable="false" Title="# Id" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="Nombre" Title="Nombre" Frozen="true" Width="150px" />
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="Descripcion" Title="Descripción" Width="150px" />
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="IdCategoriaNavigation.Nombre" Title="Categoría" Width="150px" />
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="Precio" Title="Precio" Width="150px">
+                                <Template Context="context">$@context.Precio</Template>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="PrecioOferta" Title="Precio de oferta" Width="150px">
+                                <Template Context="context">$@context.PrecioOferta</Template>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="ProductoDTO" Property="Cantidad" Title="Cantidad" Width="150px" />
+                            <RadzenDataGridColumn TItem="ProductoDTO" Title="Acción" Width="150px">
+                                <Template Context="context">
+                                    <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/product/@context.IdProducto"><i class="oi oi-pencil fs-5"></i></a>
+                                    <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Eliminar(context))">
+                                        <i class="oi oi-trash fs-5"></i>
+                                    </button>
+                                </Template>
+                            </RadzenDataGridColumn>
+                        </Columns>
+                    </RadzenDataGrid>
+
                 </div>
             </div>
-        }
-    }
-    else
-    {
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
         </div>
-    }
+    </div>
+</body>
 
 
-</div>
 @code {
-    private List<ProductoDTO>? lista = null;
     private string buscar = "";
+    IEnumerable<ProductoDTO> productos;
+    IList<ProductoDTO> selectedProductos;
 
     private async Task GetProductos(string Valor = "")
     {
@@ -89,18 +86,18 @@
 
         if (response.IsCorrect)
         {
-            lista = (List<ProductoDTO>)response.Result!;
+            productos = (List<ProductoDTO>)response.Result!;
         }
         else
         {
-            lista = new List<ProductoDTO>();
+            productos = new List<ProductoDTO>();
         }
     }
-
 
     protected override async Task OnInitializedAsync()
     {
         await GetProductos();
+        selectedProductos = new List<ProductoDTO>() { productos.FirstOrDefault() };
     }
 
     private async Task Eliminar(ProductoDTO modelo)
@@ -127,5 +124,10 @@
             else
                 toastService.ShowSuccess(response.Message!);
         }
+    }
+
+    private async Task GoToCreateProduct()
+    {
+        _navService.NavigateTo("/product");
     }
 }

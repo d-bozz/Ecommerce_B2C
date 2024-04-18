@@ -3,6 +3,7 @@
 @inject IUsuarioService usuarioService;
 @inject IToastService toastService;
 @inject SweetAlertService Swal;
+@inject NavigationManager _navService;
 
 @attribute [Authorize(Roles = "Administrador")];
 
@@ -24,6 +25,23 @@
                         Desde aquí puede realizar la administración de usuarios del sistema.
                     </p>
 
+                    <!-- Create & Search -->
+                    <div class="row justify-content-center  mt-3">
+                        <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
+                            <RadzenButton Click="@(() => GoToCreateUser())" Text="Nuevo usuario" Icon="add" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Medium" />
+                        </div>
+
+                        <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Buscar usuario..." @bind-value="buscar">
+                                <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await GetUsuarios(buscar))">
+                                    <i class="oi oi-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
                     <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                                     Data="@employees" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@selectedEmployees>
                         <Columns>
@@ -49,8 +67,8 @@
 
 @code {
     private string buscar = "";
-    IEnumerable<UsuarioDTO> employees;
-    IList<UsuarioDTO> selectedEmployees;
+    IEnumerable<UsuarioDTO>? employees;
+    IList<UsuarioDTO>? selectedEmployees;
 
     private async Task GetUsuarios(string Valor = "")
     {
@@ -95,5 +113,10 @@
             else
                 toastService.ShowSuccess(response.Message!);
         }
+    }
+
+    private async Task GoToCreateUser()
+    {
+        _navService.NavigateTo("/user");
     }
 }

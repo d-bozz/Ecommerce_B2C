@@ -10,59 +10,93 @@
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <p class="col-sm-12 col-md-8 col-xl-10 h4 mt-2">@titulo</p>
-</div>
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-12 col-md-8 col-xl-10">
+<body id="page-top">
+    <div id="wrapper">
 
-        <EditForm Model="modelo" OnValidSubmit="SaveChanges">
-            <DataAnnotationsValidator></DataAnnotationsValidator>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Nombre</span>
-                <input type="text" class="form-control" @bind-value="modelo.Nombre">
-                <ValidationMessage For="@(()=>modelo.Nombre)" />
+        <Ecommerce.Frontend.Shared.AdminLateralMenu />
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <Ecommerce.Frontend.Shared.AdminNavMenu />
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">@titulo</h1>
+                    <p class="mb-4">
+                        Cree o modifique un producto
+                    </p>
+
+                    <!-- Category Table -->
+                    <RadzenTemplateForm Data="@modelo">
+                        <RadzenStack>
+                            <RadzenFieldset Text="Producto">
+                                <RadzenStack Gap="1rem">
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Nombre" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenTextBox Style="width: 30%;" @bind-Value="@modelo.Nombre" Placeholder="Nombre" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Descripción" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenTextArea Style="width: 30%;" @bind-Value="@modelo.Descripcion" Placeholder="Descripción" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Precio" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenNumeric ShowUpDown="false" Style="width: 30%;" @bind-Value="@modelo.Precio" Placeholder="Precio" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Precio de Oferta" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenNumeric ShowUpDown="false" Style="width: 30%;" @bind-Value="@modelo.PrecioOferta" Placeholder="PrecioOferta" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Cantidad" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenNumeric Style="width: 30%;" @bind-Value="@modelo.Cantidad" Placeholder="Cantidad" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Imagen" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <div class="input-group mb-3">
+                                                <InputFile type="file" class="form-control" accept="image/png, image/gif, image/jpeg" OnChange="OnFileChange"></InputFile>
+                                            </div>
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                </RadzenStack>
+                            </RadzenFieldset>
+                        </RadzenStack>
+                        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="1rem" Class="rz-mt-8 rz-mb-4">
+                            <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Medium" Icon="save" Text="Guardar" Click="@(() => SaveChanges())" />
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Icon="undo" Text="Volver" Click="@(() => BackToProducts())" />
+                        </RadzenStack>
+                    </RadzenTemplateForm>
+
+                </div>
             </div>
-            <div class="input-group  mb-3">
-                <span class="input-group-text bg-light">Descripcion</span>
-                <textarea class="form-control" @bind="modelo.Descripcion"></textarea>
-                <ValidationMessage For="@(()=>modelo.Descripcion)" />
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text bg-light" for="inputGroupSelect01">Categoria</label>
-                <select class="form-select" value="@modelo.IdCategoria" @onchange="CambiarCategoria">
-                    @foreach (var item in listaCategoria)
-                    {
-                        <option value="@item.IdCategoria">@item.Nombre</option>
-                    }
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Precio</span>
-                <input type="number" step=".01" min="0" class="form-control" @bind-value="modelo.Precio">
-                <ValidationMessage For="@(()=>modelo.Precio)" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Precio Oferta</span>
-                <input type="number" step=".01" min="0" class="form-control" @bind-value="modelo.PrecioOferta">
-                <ValidationMessage For="@(()=>modelo.PrecioOferta)" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-light" id="basic-addon3">Cantidad</span>
-                <input type="number" class="form-control" @bind-value="modelo.Cantidad">
-                <ValidationMessage For="@(()=>modelo.Cantidad)" />
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text bg-light">Imagen</label>
-                <InputFile type="file" class="form-control" accept="image/png, image/gif, image/jpeg" OnChange="OnFileChange"></InputFile>
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary" style="width:130px">@boton</button>
-                <a href="/products" class="btn btn-secondary" style="width:130px">Volver</a>
-            </div>
-        </EditForm>
+        </div>
     </div>
-</div>
+</body>
 
 @code {
     [Parameter] public int Id { get; set; }
@@ -90,7 +124,7 @@
 
     async Task OnFileChange(InputFileChangeEventArgs e)
     {
-        System.IO.FileInfo fileInfo = new (e.File.Name);
+        System.IO.FileInfo fileInfo = new(e.File.Name);
         if (fileInfo.Extension.ToLower().Contains(".jpg") || fileInfo.Extension.ToLower().Contains(".png"))
         {
 
@@ -119,7 +153,6 @@
                 toastService.ShowWarning(response.Message!);
         }
     }
-
 
     private async Task SaveChanges()
     {
@@ -159,5 +192,10 @@
         }
         else
             toastService.ShowError(mensaje);
+    }
+
+    private async Task BackToProducts()
+    {
+        _navService.NavigateTo("/products");
     }
 }

@@ -30,10 +30,38 @@
                         <RadzenStack>
                             <RadzenFieldset Text="Usuario">
                                 <RadzenStack Gap="1rem">
-                                    <RadzenTextBox Style="width: 30%;" @bind-Value="@modelo.NombreCompleto" Placeholder="Nombre Completo" />
-                                    <RadzenTextBox Style="width: 30%;" @bind-Value="@modelo.Correo" Placeholder="Correo" />
-                                    <RadzenPassword Style="width: 30%;" @bind-Value="@modelo.Clave" Placeholder="Contraseña" />
-                                    <RadzenPassword Style="width: 30%;" @bind-Value="@modelo.ConfirmarClave" Placeholder="Confirmar Contraseña" />
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Nombre" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenTextBox Style="width: 30%;" @bind-Value="@modelo.NombreCompleto" Placeholder="Nombre Completo" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Correo" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenTextBox Style="width: 30%;" @bind-Value="@modelo.Correo" Placeholder="Correo" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Clave" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenPassword Style="width: 30%;" @bind-Value="@modelo.Clave" Placeholder="Contraseña" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
+                                    <RadzenRow AlignItems="AlignItems.Center">
+                                        <RadzenColumn Size="12" SizeMD="1">
+                                            <RadzenLabel Text="Confirmar clave" />
+                                        </RadzenColumn>
+                                        <RadzenColumn Size="12" SizeMD="8">
+                                            <RadzenPassword Style="width: 30%;" @bind-Value="@modelo.ConfirmarClave" Placeholder="Confirmar Contraseña" />
+                                        </RadzenColumn>
+                                    </RadzenRow>
                                 </RadzenStack>
                             </RadzenFieldset>
                         </RadzenStack>
