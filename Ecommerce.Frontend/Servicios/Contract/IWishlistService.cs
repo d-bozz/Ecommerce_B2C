@@ -9,5 +9,6 @@ namespace Ecommerce.Frontend.Services.Contrat
         Task<ResponseDTO<WishlistDTO>> GetByIdUsuarioAndIdProducto(int idUsuario, int idProducto);
         Task<ResponseDTO<WishlistDTO>> Add(WishlistDTO model);
         Task<ResponseDTO<bool>> Delete(int id);
+        Task<int> GetWishlistItemCount(int userId);
     }
 }

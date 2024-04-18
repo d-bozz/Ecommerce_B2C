@@ -118,6 +118,26 @@ namespace Ecommerce.API.Controllers
 
         }
 
+        [HttpGet("CountItems/{userId:int}")]
+        public async Task<IActionResult> CountItems(int userId)
+        {
+            var response = new ResponseDTO<int>();
+
+            try
+            {
+                int itemCount = await _wishlistService.GetWishlistItemCount(userId);
+                response.IsCorrect = true;
+                response.Result = itemCount;
+            }
+            catch (Exception ex)
+            {
+                response.IsCorrect = false;
+                response.Message = ex.Message;
+            }
+
+            return Ok(response);
+        }
+
         #endregion
     }
 }

@@ -13,5 +13,6 @@ namespace Ecommerce.Repository.Contract
         Task<T> Create(T model);
         Task<bool> Edit(T model);
         Task<bool> Delete(T model);
+        Task<int> Count(Expression<Func<T, bool>>? filter = null);
     }
 }

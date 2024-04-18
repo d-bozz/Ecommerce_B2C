@@ -325,6 +325,22 @@
   },
   {
     "ContainingType": "Ecommerce.API.Controllers.WishlistController",
+    "Method": "CountItems",
+    "RelativePath": "api/Wishlist/CountItems/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.WishlistController",
     "Method": "Delete",
     "RelativePath": "api/Wishlist/Delete/{id}",
     "HttpMethod": "DELETE",

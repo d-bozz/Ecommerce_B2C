@@ -4,81 +4,113 @@
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row mt-4">
+<body id="page-top">
+    <div id="wrapper">
 
-    <div class="col-sm-6 mb-3">
-        <div class="card border-5 border-bottom-0 border-top-0 border-end-0 shadow border-primary p-4">
-            <div class="row align-items-center">
-                <div class="col ms-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Total Ingresos
+        <Ecommerce.Frontend.Shared.AdminLateralMenu />
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <Ecommerce.Frontend.Shared.AdminNavMenu />
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>
                     </div>
-                    <div class="h5 mb-0 fw-bold text-muted">
-                        S/. @dashboard.TotalIngresos
+
+                    <!-- Paneles -->
+                    <div class="row">
+
+                        <!-- Total de ventas -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total de Ventas
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@dashboard.TotalVentas</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total de ingresos -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total de Ventas
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$@dashboard.TotalIngresos</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total de Productos -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Total de Productos
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@dashboard.TotalProductos</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total de clientes -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total de Clientes
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@dashboard.TotalClientes</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <i class="oi oi-dollar text-secondary" style="font-size:50px"></i>
+
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col-sm-6 mb-3">
-        <div class="card border-5 border-bottom-0 border-top-0 border-end-0 shadow border-success p-4">
-            <div class="row align-items-center">
-                <div class="col ms-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Total Ventas
-                    </div>
-                    <div class="h5 mb-0 fw-bold text-muted">
-                        @dashboard.TotalVentas
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="oi oi-tags text-secondary" style="font-size:50px"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 mb-3">
-        <div class="card border-5 border-bottom-0 border-top-0 border-end-0 shadow border-warning p-4">
-            <div class="row align-items-center">
-                <div class="col ms-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                        Total Clientes
-                    </div>
-                    <div class="h5 mb-0 fw-bold text-muted">
-                        @dashboard.TotalClientes
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="oi oi-people text-secondary" style="font-size:50px"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 mb-3">
-        <div class="card border-5 border-bottom-0 border-top-0 border-end-0 shadow border-info p-4">
-            <div class="row align-items-center">
-                <div class="col ms-2">
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                        Total Productos
-                    </div>
-                    <div class="h5 mb-0 fw-bold text-muted">
-                        @dashboard.TotalProductos
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="oi oi-box text-secondary" style="font-size:50px"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
+</body>
 
 @code {
     private DashboardDTO dashboard = new DashboardDTO();

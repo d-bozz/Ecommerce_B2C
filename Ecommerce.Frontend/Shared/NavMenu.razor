@@ -1,5 +1,6 @@
 ﻿@using Ecommerce.Frontend.Services.Contrat
 @inject ICarritoService carritoService;
+@inject IWishlistService wishService;
 @implements IDisposable
 
 @inject SweetAlertService swal;
@@ -9,7 +10,68 @@
 @using System.Security.Claims;
 @inject AuthenticationStateProvider authenticationProvider;
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
+<div class="main_header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="header_container d-flex justify-content-between align-items-center">
+                    <div class="canvas_open">
+                        <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                    </div>
+                    <div class="header_logo">
+                        <a class="sticky_none" href="index.html"><img src="Store/assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <!--main menu start-->
+                    <div class="main_menu d-none d-lg-block">
+                        <nav>
+                            <ul class="d-flex">
+                                <li><a class="active" href="index.html">demo</a> </li>
+                                <li><a href="shop.html">shop</a></li>
+                                <li><a href="product-details.html">product</a></li>
+                                <li><a href="#">sale</a></li>
+                                <li>
+                                    <a href="#">pages</a>
+                                    <ul class="sub_menu">
+                                        <li><a href="cart">Cart Pages</a></li>
+                                        <li><a href="checkout">Checkout Pages</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog.html">blog</a>
+                                    <ul class="sub_menu">
+                                        <li><a href="blog.html">Blog Pages</a></li>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">buy</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header_account">
+                        <ul class="d-flex">
+                            <li class="header_search"><a href="#"><i class="icon-magnifier icons"></i></a></li>
+                            <li class="account_link">
+                                <a href="#"><i class="icon-user icons"></i></a>
+                                <ul class="dropdown_account_link">
+                                    <li><a href="profile">My Account</a></li>
+                                    <li><a href="login">Login</a></li>
+                                    <li><a href="contact">Contact</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="wishlist"><i class="icon-heart icons"></i></a> <span class="item_count">@wishlistCount</span></li>
+                            <li class="shopping_cart">
+                                <a href="#"><i class="icon-basket-loaded icons"></i></a>
+                                <span class="item_count">@ShowQuantityCarrito()</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" runat="server" href="#">Ecommerce Demo</a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
@@ -68,11 +130,12 @@
         </div>
     </div>
 </nav>
-
+ *@
 @code {
     private bool collapseNavMenu = true;
-
+    private int idUsuario;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private int wishlistCount;
 
     private void ToggleNavMenu()
     {
@@ -82,6 +145,39 @@
     protected override void OnInitialized()
     {
         carritoService.ShowItems += StateHasChanged;
+        GetWishlistItemCount();
+    }
+
+    private async Task GetWishlistItemCount()
+    {
+        try
+        {
+            var authState = await authenticationProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+
+            if (user.Identity?.IsAuthenticated ?? false)
+            {
+                var nameIdentifierClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+                if (nameIdentifierClaim != null)
+                {
+                    idUsuario = Convert.ToInt32(nameIdentifierClaim.Value);
+                    wishlistCount = await wishService.GetWishlistItemCount(idUsuario);
+                    StateHasChanged();
+                }
+                else
+                {
+                    Console.WriteLine("El usuario no esta autenticado");
+                }
+            }
+            else
+            {
+                Console.WriteLine("El usuario no esta autenticado");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
     public void Dispose()

@@ -12,99 +12,186 @@
 @using System.Security.Claims;
 @using Microsoft.AspNetCore.Components.Forms;
 
-<head>
-    <title>cart page</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-</head>
-
 <BreadCrumb BreadcrumbItems="@breadcrumbItems" />
 
-<div class="cart-area table-area pt-110 pb-95 float-left w-100">
+<div class="shopping_cart_area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12 float-left cart-wrapper">
-                <div class="table-responsive">
-                    <table class="table product-table text-center">
-                        <thead>
-                            <tr>
-                                <th class="table-remove text-capitalize">Eliminar</th>
-                                <th class="table-image text-capitalize">Imagen</th>
-                                <th class="table-p-name text-capitalize">Producto</th>
-                                <th class="table-p-price text-capitalize">Precio</th>
-                                <th class="table-p-qty text-capitalize">Cantidad</th>
-                                <th class="table-total text-capitalize">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (lista.Any())
-                            {
-                                foreach (var item in lista)
-                                {
+        <form action="#">
+            <div class="cart_page_inner mb-60">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart_page_tabel">
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td class="table-remove" @onclick="(async () => await Eliminar(item.Producto.IdProducto))"><button><i class="material-icons">delete</i></button></td>
-                                        <td class="table-image"><a href="detail/@item.Producto.IdProducto"><img src="@item.Producto.Imagen" alt=""></a></td>
-                                        <td class="table-p-name text-capitalize"><a href="detail/@item.Producto.IdProducto">@item.Producto.Nombre</a></td>
-                                        <td class="table-p-price"><p>$@item.Producto.PrecioOferta</p></td>
-                                        <td class="table-p-qty">
-                                            <input value="@item.Cantidad" @oninput="(e => ActualizarCantidad(item, e))" name="cart-qty" min="1" type="number">
-                                        </td>
-                                        <td class="table-total"><p>$@(item.Producto.PrecioOferta * item.Cantidad)</p></td>
+                                        <th>producto </th>
+                                        <th>información</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
                                     </tr>
-                                }
-
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <td colspan="6">
-                                        <div class="alert alert-warning" role="alert">
-                                            No hay productos en el carrito de compras
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="table-bottom-wrapper">
-                    <div class="table-coupon d-flex d-xs-block d-lg-flex d-sm-flex fix justify-content-start float-left">
-                        <input type="text" placeholder="Código del cupon">
-                        <button type="submit" class="btn-primary btn">Aplicar cupon</button>
+                                </thead>
+                                <tbody>
+                                    @if (lista.Any())
+                                    {
+                                        foreach (var item in lista)
+                                        {
+                                            <tr class="border-top">
+                                                <td>
+                                                    <div class="cart_product_thumb">
+                                                        <img src="@item.Producto.Imagen" alt="">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="cart_product_text">
+                                                        <h4>@item.Producto.Nombre</h4>
+                                                        <ul>
+                                                            <li><i class="ion-ios-arrow-right"></i> Color : <span>White</span></li>
+                                                            <li><i class="ion-ios-arrow-right"></i> Size : <span>XL</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="cart_product_price">
+                                                        <span>$@item.Producto.PrecioOferta</span>
+                                                    </div>
+                                                </td>
+                                                <td class="product_quantity">
+                                                    <div class="cart_product_quantity">
+                                                        <input value="@item.Cantidad" @oninput="(e => ActualizarCantidad(item, e))" min="1" max="100" type="number">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="cart_product_price">
+                                                        <span>$@(item.Producto.PrecioOferta * item.Cantidad)</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="cart_product_remove text-right">
+                                                        <a @onclick="(async () => await Eliminar(item.Producto.IdProducto))"><i class="ion-android-close"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr class="text-center">
+                                            <td colspan="6">
+                                                <div class="alert alert-warning" role="alert">
+                                                    No hay productos en el carrito de compras
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart_page_button border-top d-flex justify-content-between">
+                            <div class="shopping_cart_btn">
+                                <button class="btn btn-primary border">LIMPIAR EL CARRITO DE COMPRAS</button>
+                            </div>
+                            <div class="shopping_continue_btn">
+                                <a href="catalogue" class="btn btn-primary">CONTINUAR COMPRANDO</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left  align-items-center">
-                <div class="table-total-content">
-                    <h2 class="pb-20">Cart totals</h2>
-                    <div class="table-total-amount">
-                        <div class="single-total-content d-flex justify-content-between float-left w-100">
-                            <strong>Subtotal</strong>
-                            <span class="c-total-price">$@subtotal</span>
+            <!--coupon code area start-->
+            <div class="cart_page_bottom">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="shopping_coupon_calculate top">
+                            <h3 class="border-bottom">Calcular Envío </h3>
+                            <select class="select_option border" style="display: none;">
+                                <option value="1">Artigas  </option>
+                                <option value="2">Canelones  </option>
+                                <option value="3">Cerro Largo  </option>
+                                <option value="4">Colonia </option>
+                                <option value="5">Durazno </option>
+                                <option value="6">Flores </option>
+                                <option value="7">Florida </option>
+                                <option value="8">Lavalleja </option>
+                                <option value="9">Maldonado </option>
+                                <option value="10">Montevideo </option>
+                                <option value="11">Paysandú </option>
+                                <option value="12">Río Negro </option>
+                                <option value="13">Rivera </option>
+                                <option value="14">Rocha </option>
+                                <option value="15">Salto </option>
+                                <option value="16">San José </option>
+                                <option value="17">Soriano </option>
+                                <option value="18">Tacuarembó </option>
+                                <option value="19">Treinta y Tres </option>
+                            </select>
+                            <div class="nice-select select_option border" tabindex="0">
+                                <span class="current">United Kingdom (UK)  
+                                </span>
+                                <ul class="list">
+                                    <li data-value="1" class="option selected">Artigas </li>
+                                    <li data-value="2" class="option">Canelones </li>
+                                    <li data-value="3" class="option">Cerro Largo </li>
+                                    <li data-value="4" class="option">Colonia </li>
+                                    <li data-value="5" class="option">Durazno </li>
+                                    <li data-value="6" class="option">Flores </li>
+                                    <li data-value="7" class="option">Florida </li>
+                                    <li data-value="8" class="option">Lavalleja </li>
+                                    <li data-value="9" class="option">Maldonado </li>
+                                    <li data-value="10" class="option">Montevideo </li>
+                                    <li data-value="11" class="option">Paysandú </li>
+                                    <li data-value="12" class="option">Río Negro </li>
+                                    <li data-value="13" class="option">Rivera </li>
+                                    <li data-value="14" class="option">Rocha </li>
+                                    <li data-value="15" class="option">Salto </li>
+                                    <li data-value="16" class="option">San José </li>
+                                    <li data-value="17" class="option">Soriano </li>
+                                    <li data-value="18" class="option">Tacuarembó </li>
+                                    <li data-value="19" class="option">Treinta y Tres </li>
+                                </ul>
+                                </div>
+                            <input class="border" placeholder="Ciudad / Barrio" type="text">
+                            <input class="border" placeholder="Calle / Puerta" type="text">
+                            <button class="btn btn-primary" type="submit">Cotizar Envío</button>
                         </div>
-                        <div class="single-total-content d-flex justify-content-between float-left w-100">
-                            <strong>Envío</strong>
-                            <span class="c-total-price"><span>DAC:</span> $@shipping</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="shopping_coupon_calculate">
+                            <h3 class="border-bottom">Cupón de Descuento </h3>
+                            <p>Ingrese su cupón de descuento.</p>
+                            <input class="border" placeholder="Ingrese el cupón" type="text">
+                            <button class="btn btn-primary" type="submit">Aplicar cupón</button>
                         </div>
-                        <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
-                            <strong>Total</strong>
-                            <span class="c-total-price">$@CalculateTotal()</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="grand_totall_area">
+                            <div class="grand_totall_inner border-bottom">
+                                <div class="cart_subtotal d-flex justify-content-between">
+                                    <p>sub total </p>
+                                    <span>$@subtotal</span>
+                                </div>
+                                <div class="cart_subtotal d-flex justify-content-between">
+                                    <p>envío </p>
+                                    <span>$@shipping</span>
+                                </div>
+                                <div class="cart_grandtotal d-flex justify-content-between">
+                                    <p>grand total</p>
+                                    <span>$@CalculateTotal()</span>
+                                </div>
+                            </div>
+                            <div class="proceed_checkout_btn">
+                                <a class="btn btn-primary" href="checkout">Proceder al Checkout</a>
+                            </div>
                         </div>
-                        <a href="checkout" class="btn btn-primary float-left w-100 text-center">Proceder al checkout</a>
                     </div>
                 </div>
             </div>
-        </div>
+            <!--coupon code area end-->
+        </form>
     </div>
 </div>
 
+<Footer />
 
 @code {
     private bool disabled = true;
@@ -135,6 +222,11 @@
 
         CalculateSubtotal();
         CalculateTotal();
+    }
+
+    private void LimpiarCarrito()
+    {
+        lista = new List<CarritoDTO>();
     }
 
     private void ActualizarCantidad(CarritoDTO item, ChangeEventArgs e)

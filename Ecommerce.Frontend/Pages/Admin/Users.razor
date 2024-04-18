@@ -6,80 +6,69 @@
 
 @attribute [Authorize(Roles = "Administrador")];
 
-<div class="row justify-content-center  mt-3">
-    <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
-        <div class="d-grid gap-1 col-12 mx-auto">
-            <a class="btn btn-primary" href="/user">Nuevo usuario</a>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-8 col-xl-9 mb-4">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Buscar usuario..." @bind-value="buscar">
-            <button class="btn btn-outline-secondary" type="button" @onclick="(async()=> await GetUsuarios(buscar))">
-                <i class="oi oi-magnifying-glass"></i>
-            </button>
-        </div>
-    </div>
-</div>
+<body id="page-top">
+    <div id="wrapper">
 
-<div class="row gx-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-2">
+        <Ecommerce.Frontend.Shared.AdminLateralMenu />
 
-    @if (lista != null)
-    {
-        foreach (var item in lista)
-        {
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <i class="oi oi-person" style="font-size:50px"></i>
-                        </div>
-                        <div class="text-start">
-                            <p class="m-1"><b>Nombre: </b>@item.NombreCompleto</p>
-                            <p class="m-1"><b>Correo: </b>@item.Correo</p>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-transparent">
-                        <div class="row justify-content-between">
-                            <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/user/@item.IdUsuario"><i class="oi oi-pencil fs-5"></i></a>
-                            <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Delete(item))">
-                                <i class="oi oi-trash fs-5"></i>
-                            </button>
-                        </div>
-                    </div>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <Ecommerce.Frontend.Shared.AdminNavMenu />
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+                    <p class="mb-4">
+                        Desde aquí puede realizar la administración de usuarios del sistema.
+                    </p>
+
+                    <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                                    Data="@employees" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@selectedEmployees>
+                        <Columns>
+                            <RadzenDataGridColumn TItem="UsuarioDTO" Property="IdUsuario" Filterable="false" Title="# Id" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+                            <RadzenDataGridColumn TItem="UsuarioDTO" Property="NombreCompleto" Title="Nombre" Frozen="true" Width="150px" />
+                            <RadzenDataGridColumn TItem="UsuarioDTO" Property="Correo" Title="Correo" Width="150px" />
+                            <RadzenDataGridColumn TItem="UsuarioDTO" Property="Rol" Title="Rol" Width="150px" />
+                            <RadzenDataGridColumn TItem="UsuarioDTO" Title="Acción" Width="150px">
+                                    <Template Context="context">
+                                <a class="col-5 btn btn-sm btn-outline-primary mt-auto" href="/user/@context.IdUsuario"><i class="oi oi-pencil fs-5"></i></a>
+                                <button class="col-5 btn btn-sm btn-outline-danger mt-auto" type="button" @onclick="(async () => await Delete(context))">
+                                    <i class="oi oi-trash fs-5"></i>
+                                </button>
+                                </Template>
+                            </RadzenDataGridColumn>
+                        </Columns>
+                    </RadzenDataGrid>
                 </div>
             </div>
-        }
-    }
-    else
-    {
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
         </div>
-    }
-
-</div>
+    </div>
+</body>
 
 @code {
-    private List<UsuarioDTO>? lista = null;
     private string buscar = "";
+    IEnumerable<UsuarioDTO> employees;
+    IList<UsuarioDTO> selectedEmployees;
 
     private async Task GetUsuarios(string Valor = "")
     {
         var response = await usuarioService.List("Administrador", Valor);
         if (response.IsCorrect)
         {
-            lista = (List<UsuarioDTO>)response.Result!;
+            employees = (List<UsuarioDTO>)response.Result!;
         }
         else
         {
-            lista = new List<UsuarioDTO>();
+            employees = new List<UsuarioDTO>();
         }
     }
 
     protected override async Task OnInitializedAsync()
     {
         await GetUsuarios();
+        selectedEmployees = new List<UsuarioDTO>() { employees.FirstOrDefault() };
     }
 
     private async Task Delete(UsuarioDTO model)

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Ecommerce.Repository.Contract;
 using Ecommerce.Repository.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Repository.Implementation
 {
@@ -24,7 +25,7 @@ namespace Ecommerce.Repository.Implementation
         {
             _dbContext = dbContext;
         }
-        
+                
         #endregion
 
         public async Task<T> Create(T model)
@@ -73,6 +74,21 @@ namespace Ecommerce.Repository.Implementation
         {
             IQueryable<T> query = (filter == null) ? _dbContext.Set<T>(): _dbContext.Set<T>().Where(filter);
             return query;
+        }
+
+        public async Task<int> Count(Expression<Func<T, bool>>? filter = null)
+        {
+            try
+            {
+                if (filter == null)
+                    return await _dbContext.Set<T>().CountAsync();
+                else
+                    return await _dbContext.Set<T>().CountAsync(filter);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

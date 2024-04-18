@@ -51,7 +51,6 @@ namespace Ecommerce.Services.Implementation
                 throw ex;
             }
         }
-
         public async Task<bool> Delete(int id)
         {
             try
@@ -78,7 +77,6 @@ namespace Ecommerce.Services.Implementation
                 throw;
             }
         }
-
         public async Task<WishlistDTO> Get(int id)
         {
             try
@@ -100,7 +98,6 @@ namespace Ecommerce.Services.Implementation
                 throw ex;
             }
         }
-
         public async Task<WishlistDTO> GetByIdUsuarioAndIdProducto(int idUsuario, int idProducto)
         {
             try
@@ -122,7 +119,6 @@ namespace Ecommerce.Services.Implementation
                 throw ex;
             }
         }
-
         public async Task<List<WishlistDTO>> List(int id)
         {
             try
@@ -143,6 +139,17 @@ namespace Ecommerce.Services.Implementation
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+        public async Task<int> GetWishlistItemCount(int userId)
+        {
+            try
+            {
+                return await _genericRepository.Count(w => w.IdUsuario == userId);
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
